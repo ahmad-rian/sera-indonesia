@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SERA Meta Information -->
+    <title>SERA INDONESIA 🇮🇩 </title>
+    <meta name="description" content="SERA adalah platform digital untuk aksi lingkungan Indonesia. Bergabunglah dalam melindungi Raja Ampat, mengatasi krisis lingkungan, dan membangun Indonesia yang berkelanjutan." />
+    <meta name="keywords" content="lingkungan indonesia, sera, konservasi, raja ampat, krisis lingkungan, aksi nyata, platform lingkungan, environmental monitoring, indonesia environment" />
+    <meta name="author" content="SERA Platform" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Indonesian" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sera.id/" />
+    <meta property="og:title" content="SERA - Semesta Ruang Alam | Platform Aksi Lingkungan Indonesia" />
+    <meta property="og:description" content="Platform digital untuk aksi lingkungan Indonesia. Bersama SERA, lindungi Indonesia untuk generasi mendatang." />
+    <meta property="og:image" content="/assets/sera-og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="SERA Indonesia" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@sera_indonesia" />
+    <meta name="twitter:creator" content="@sera_indonesia" />
+    <meta name="twitter:url" content="https://sera.id/" />
+    <meta name="twitter:title" content="SERA - Platform Aksi Lingkungan Indonesia" />
+    <meta name="twitter:description" content="Bergabunglah dalam melindungi lingkungan Indonesia. Aksi nyata dimulai dari SERA." />
+    <meta name="twitter:image" content="/assets/sera-twitter-image.jpg" />
+    
+    <!-- Theme and Colors -->
+    <meta name="theme-color" content="#16a34a" />
+    <meta name="msapplication-TileColor" content="#16a34a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SERA Indonesia" />
+    
+    <!-- Icons & Manifest -->
+    <link rel="icon" type="image/png" href="/assets/icons/logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/sera-icon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/sera-icon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/sera-icon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/sera-apple-touch-icon.png" />
+    <link rel="mask-icon" href="/assets/icons/sera-icon.svg" color="#16a34a" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sera.id/" />
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SERA - Semesta Ruang Alam",
+      "alternateName": "SERA Indonesia",
+      "url": "https://sera.id",
+      "logo": "https://sera.id/assets/icons/logo.png",
+      "description": "Platform digital untuk aksi lingkungan Indonesia",
+      "foundingDate": "2024",
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "Indonesia"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Indonesia"
+      },
+      "sameAs": [
+        "https://twitter.com/sera_indonesia",
+        "https://instagram.com/sera_indonesia",
+        "https://facebook.com/sera_indonesia"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+62-21-1234-5678",
+        "contactType": "customer support",
+        "email": "hello@sera.id",
+        "availableLanguage": ["Indonesian", "English"]
+      }
+    }
+    </script>
+    
+    <!-- Enhanced Loading Script with Logo Detection -->
+    <script>
+      // Enhanced loading with logo detection
+      (function() {
+        // Check if logo exists
+        const testLogo = new Image();
+        testLogo.onload = function() {
+          // Logo exists, keep current CSS
+          console.log('🌿 SERA logo loaded successfully');
+        };
+        
+        testLogo.onerror = function() {
+          // Logo not found, fallback to text logo
+          console.warn('⚠️ SERA logo not found, using text fallback');
+          
+          // Create fallback style
+          const fallbackStyle = document.createElement('style');
+          fallbackStyle.textContent = `
+            #root:empty::before {
+              content: "SERA" !important;
+              width: auto !important;
+              height: auto !important;
+              background-image: none !important;
+              font-size: 2.5rem !important;
+              font-weight: 900 !important;
+              color: #16a34a !important;
+              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+              margin: 0 auto 24px auto !important;
+              animation: logoSpin 2s ease-in-out infinite !important;
+              display: block !important;
+            }
+            
+            .dark #root:empty::before {
+              color: #86efac !important;
+            }
+            
+            @keyframes logoSpin {
+              0%, 100% {
+                transform: scale(1) rotate(0deg);
+              }
+              50% {
+                transform: scale(1.1) rotate(5deg);
+              }
+            }
+          `;
+          document.head.appendChild(fallbackStyle);
+        };
+        
+        testLogo.src = '/assets/icons/logo.png';
+        
+        // Auto-hide loading when React mounts
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length > 0) {
+              const root = document.getElementById('root');
+              if (root && root.children.length > 0) {
+                // React has mounted, hide loading
+                const hideStyle = document.createElement('style');
+                hideStyle.textContent = `
+                  #root {
+                    background: transparent !important;
+                    animation: none !important;
+                  }
+                  #root::before,
+                  #root::after {
+                    display: none !important;
+                  }
+                `;
+                document.head.appendChild(hideStyle);
+                observer.disconnect();
+              }
+            }
+          });
+        });
+        
+        const rootElement = document.getElementById('root');
+        if (rootElement) {
+          observer.observe(rootElement, { childList: true, subtree: true });
+        }
+        
+      })();
+    </script>
+    
+    <!-- Critical CSS for theme detection -->
+    <script>
+      // Theme detection before page load
+      (function() {
+        const savedTheme = localStorage.getItem('sera-theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = savedTheme || systemTheme;
+        
+        document.documentElement.className = theme;
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Update theme-color meta tag
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#16a34a');
+        }
+      })();
+    </script>
+    
+    <!-- Critical CSS to prevent FOUC -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #ffffff;
+        color: #171717;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      
+      .dark body {
+        background-color: #0a0a0a;
+        color: #fafafa;
+      }
+      
+      /* Enhanced Loading Screen */
+      #root:empty {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .dark #root:empty {
+        background: linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%);
+      }
+      
+      /* Logo - positioned relative to flex container */
+      #root:empty::before {
+        content: "";
+        width: 80px;
+        height: 80px;
+        background-image: url('/assets/icons/logo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        animation: logoSpin 2s ease-in-out infinite;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        display: block;
+        margin: 0 auto 24px auto;
+      }
+      
+      /* Text - positioned relative to flex container */
+      #root:empty::after {
+        content: "Memuat SERA Indonesia 🇮🇩";
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #16a34a;
+        text-align: center;
+        animation: textPulse 2s ease-in-out infinite;
+        display: block;
+        margin: 0 auto;
+      }
+      
+      .dark #root:empty::after {
+        color: #86efac;
+      }
+      
+      /* Loading Animations */
+      @keyframes logoSpin {
+        0%, 100% {
+          transform: rotate(0deg) scale(1);
+        }
+        50% {
+          transform: rotate(180deg) scale(1.1);
+        }
+      }
+      
+      @keyframes textPulse {
+        0%, 100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        50% {
+          opacity: 0.7;
+          transform: translateY(-4px);
+        }
+      }
+      
+      /* Loading Dots - positioned below text */
+      #root:empty {
+        position: relative;
+      }
+      
+      #root:empty::before {
+        position: relative;
+        z-index: 2;
+      }
+      
+      #root:empty::after {
+        position: relative;
+        z-index: 2;
+      }
+      
+      /* Create loading dots container with absolute positioning */
+      #root:empty {
+        background-image: 
+          radial-gradient(circle, #16a34a 3px, transparent 3px),
+          radial-gradient(circle, #16a34a 3px, transparent 3px),
+          radial-gradient(circle, #16a34a 3px, transparent 3px);
+        background-size: 12px 12px;
+        background-position: 
+          calc(50% - 24px) calc(50% + 80px),
+          50% calc(50% + 80px),
+          calc(50% + 24px) calc(50% + 80px);
+        background-repeat: no-repeat;
+        animation: dotsAnimation 1.5s ease-in-out infinite;
+      }
+      
+      .dark #root:empty {
+        background-image: 
+          radial-gradient(circle, #86efac 3px, transparent 3px),
+          radial-gradient(circle, #86efac 3px, transparent 3px),
+          radial-gradient(circle, #86efac 3px, transparent 3px),
+          linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%);
+        background-size: 
+          12px 12px,
+          12px 12px,
+          12px 12px,
+          100% 100%;
+        background-position: 
+          calc(50% - 24px) calc(50% + 80px),
+          50% calc(50% + 80px),
+          calc(50% + 24px) calc(50% + 80px),
+          0 0;
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+        animation: dotsAnimation 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes dotsAnimation {
+        0%, 20% {
+          background-size: 
+            16px 16px, 10px 10px, 10px 10px,
+            100% 100%;
+        }
+        33%, 53% {
+          background-size: 
+            10px 10px, 16px 16px, 10px 10px,
+            100% 100%;
+        }
+        66%, 86% {
+          background-size: 
+            10px 10px, 10px 10px, 16px 16px,
+            100% 100%;
+        }
+        100% {
+          background-size: 
+            16px 16px, 10px 10px, 10px 10px,
+            100% 100%;
+        }
+      }
+      
+      /* Responsive */
+      @media (max-width: 640px) {
+        #root:empty::before {
+          width: 64px;
+          height: 64px;
+        }
+        
+        #root:empty::after {
+          font-size: 1rem;
+        }
+        
+        #root:empty {
+          background-position: 
+            calc(50% - 20px) calc(50% + 60px),
+            50% calc(50% + 60px),
+            calc(50% + 20px) calc(50% + 60px);
+        }
+        
+        .dark #root:empty {
+          background-position: 
+            calc(50% - 20px) calc(50% + 60px),
+            50% calc(50% + 60px),
+            calc(50% + 20px) calc(50% + 60px),
+            0 0;
+        }
+      }
+      
+      /* Auto hide when React loads */
+      #root:not(:empty) {
+        background: transparent !important;
+        animation: none !important;
+      }
+      
+      #root:not(:empty)::before,
+      #root:not(:empty)::after {
+        display: none !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
