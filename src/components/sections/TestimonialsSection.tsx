@@ -13,9 +13,7 @@ import {
   Heart,
   Shield,
   Leaf,
-  Camera,
   MessageCircle,
-  ExternalLink,
   Play
 } from 'lucide-react';
 
@@ -111,15 +109,6 @@ const TestimonialsSection: React.FC = () => {
     }
   ];
 
-  const partnerLogos = [
-    { name: "Kementerian LHK", logo: "/api/placeholder/120/60" },
-    { name: "WWF Indonesia", logo: "/api/placeholder/120/60" },
-    { name: "Greenpeace", logo: "/api/placeholder/120/60" },
-    { name: "Conservation International", logo: "/api/placeholder/120/60" },
-    { name: "UNDP Indonesia", logo: "/api/placeholder/120/60" },
-    { name: "BMKG", logo: "/api/placeholder/120/60" }
-  ];
-
   const impactStats = [
     {
       icon: Shield,
@@ -151,7 +140,6 @@ const TestimonialsSection: React.FC = () => {
     }
   ];
 
-  // Auto-play testimonials
   useEffect(() => {
     if (isPlaying) {
       intervalRef.current = setInterval(() => {
@@ -205,13 +193,11 @@ const TestimonialsSection: React.FC = () => {
   return (
     <section className="relative bg-gradient-to-br from-slate-50 via-white to-emerald-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800 py-20 lg:py-24 overflow-hidden">
       
-      {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/6 w-64 h-64 bg-emerald-200/20 dark:bg-emerald-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/6 w-80 h-80 bg-blue-200/20 dark:bg-blue-500/10 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-200/10 dark:bg-purple-500/5 rounded-full blur-3xl" />
         
-        {/* Floating Elements */}
         <motion.div
           animate={{ y: [-20, 20, -20], rotate: [0, 5, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -226,7 +212,6 @@ const TestimonialsSection: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -260,7 +245,6 @@ const TestimonialsSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Main Testimonial Showcase */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -270,7 +254,6 @@ const TestimonialsSection: React.FC = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             
-            {/* Main Testimonial Card */}
             <div className="lg:col-span-2">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -281,26 +264,21 @@ const TestimonialsSection: React.FC = () => {
                   transition={{ duration: 0.6 }}
                   className="bg-white dark:bg-slate-800 rounded-3xl p-8 lg:p-10 shadow-xl border border-slate-200 dark:border-slate-700 relative overflow-hidden"
                 >
-                  {/* Quote Icon */}
                   <div className="absolute top-6 right-6 w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center">
                     <Quote className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   
-                  {/* Content */}
                   <div className="relative z-10">
-                    {/* Rating */}
                     <div className="flex items-center space-x-1 mb-4">
                       {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
                         <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                       ))}
                     </div>
                     
-                    {/* Testimonial Text */}
                     <blockquote className="text-lg lg:text-xl text-slate-700 dark:text-slate-300 leading-relaxed mb-6 font-medium">
                       "{testimonials[activeTestimonial].content}"
                     </blockquote>
                     
-                    {/* Author Info */}
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
                         {testimonials[activeTestimonial].name.split(' ').map(n => n[0]).join('')}
@@ -323,7 +301,6 @@ const TestimonialsSection: React.FC = () => {
                       </div>
                     </div>
                     
-                    {/* Meta Info */}
                     <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
                       <div className="flex items-center space-x-1">
                         <MapPin className="h-4 w-4" />
@@ -339,7 +316,6 @@ const TestimonialsSection: React.FC = () => {
                       </div>
                     </div>
                     
-                    {/* Impact Highlight */}
                     <div className="mt-6 p-4 bg-emerald-50 dark:bg-emerald-500/10 rounded-xl border border-emerald-200 dark:border-emerald-500/20">
                       <div className="flex items-center space-x-2">
                         <TrendingUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
@@ -353,9 +329,7 @@ const TestimonialsSection: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            {/* Navigation & Thumbnails */}
             <div className="space-y-6">
-              {/* Controls */}
               <div className="flex items-center justify-center space-x-4">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
@@ -385,7 +359,6 @@ const TestimonialsSection: React.FC = () => {
                 </motion.button>
               </div>
               
-              {/* Thumbnail Navigation */}
               <div className="space-y-3 max-h-96 overflow-y-auto scrollbar-hide">
                 {testimonials.map((testimonial, index) => (
                   <motion.button
@@ -421,7 +394,6 @@ const TestimonialsSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Impact Statistics */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -456,8 +428,6 @@ const TestimonialsSection: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
-
-        
       </div>
     </section>
   );

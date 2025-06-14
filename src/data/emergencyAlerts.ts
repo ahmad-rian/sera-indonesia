@@ -1,4 +1,4 @@
-import { AlertTriangle, Trees, Wind, Thermometer } from 'lucide-react';
+import { AlertTriangle, Trees, Wind } from 'lucide-react';
 import type { EmergencyAlert } from '../types/index';
 
 export const emergencyAlerts: EmergencyAlert[] = [

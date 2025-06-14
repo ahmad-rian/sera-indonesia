@@ -9,14 +9,11 @@ import {
   Globe,
   Camera,
   Bell,
-  MapPin,
-  TrendingUp,
   Database,
   Smartphone,
-  ChevronRight,
+  TrendingUp,
   Play,
-  Pause,
-  ExternalLink
+  Pause
 } from 'lucide-react';
 
 const FeaturesSection: React.FC = () => {
@@ -111,7 +108,6 @@ const FeaturesSection: React.FC = () => {
   return (
     <section ref={sectionRef} className="relative bg-white dark:bg-slate-900 py-20 lg:py-24 overflow-hidden">
       
-      {/* Animated Background */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div 
           style={{ y }}
@@ -122,13 +118,11 @@ const FeaturesSection: React.FC = () => {
           className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl"
         />
         
-        {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_800px_600px_at_50%_300px,black,transparent)]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -162,7 +156,6 @@ const FeaturesSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Main Features Interactive */}
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -172,7 +165,6 @@ const FeaturesSection: React.FC = () => {
             className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
           >
             
-            {/* Feature List */}
             <div className="space-y-6">
               {mainFeatures.map((feature, index) => (
                 <motion.div
@@ -235,7 +227,6 @@ const FeaturesSection: React.FC = () => {
               ))}
             </div>
 
-            {/* Feature Visual */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -245,7 +236,6 @@ const FeaturesSection: React.FC = () => {
             >
               <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 shadow-2xl border border-slate-700">
                 <div className="relative aspect-video bg-slate-800 rounded-xl overflow-hidden mb-6">
-                  {/* Mock Dashboard Interface */}
                   <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-blue-500/20" />
                   <div className="absolute top-4 left-4 flex items-center space-x-2">
                     <div className="w-3 h-3 bg-red-500 rounded-full" />
@@ -253,7 +243,6 @@ const FeaturesSection: React.FC = () => {
                     <div className="w-3 h-3 bg-green-500 rounded-full" />
                   </div>
                   
-                  {/* Mock Data Visualization */}
                   <div className="absolute inset-4 top-12">
                     <div className="grid grid-cols-3 gap-4 h-full">
                       <div className="space-y-2">
@@ -274,7 +263,6 @@ const FeaturesSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <motion.button
                       whileHover={{ scale: 1.1 }}
@@ -300,7 +288,6 @@ const FeaturesSection: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Technology Stack */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -352,7 +339,6 @@ const FeaturesSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Impact Metrics */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -395,8 +381,6 @@ const FeaturesSection: React.FC = () => {
             ))}
           </div>
         </motion.div>
-
-        
       </div>
     </section>
   );

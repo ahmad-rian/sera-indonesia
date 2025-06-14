@@ -1,34 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  AlertTriangle, 
-  ChevronRight,
-  Play,
-  Pause,
-  BarChart3,
-  Users,
-  Shield,
-  TrendingUp
-} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { emergencyAlerts } from '../../data/emergencyAlerts';
 import CardSwap, { Card } from '../magicui/CardSwap';
-import { HyperText } from '../magicui/HyperText'; // Import HyperText component
+import { HyperText } from '../magicui/HyperText';
 
 const HeroSection: React.FC = () => {
   const [currentAlert, setCurrentAlert] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Auto-rotate emergency alerts
   useEffect(() => {
-    if (!isPlaying) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-      return;
-    }
-    
     intervalRef.current = setInterval(() => {
       setCurrentAlert((prev) => (prev + 1) % emergencyAlerts.length);
     }, 5000);
@@ -38,29 +20,22 @@ const HeroSection: React.FC = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isPlaying]);
-
-  const currentAlertData = emergencyAlerts[currentAlert];
+  }, []);
 
   return (
     <section className="relative min-h-screen bg-white dark:bg-slate-900 overflow-hidden">
       
-      {/* Simple Background Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-50 dark:bg-emerald-500/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-50 dark:bg-teal-500/5 rounded-full blur-3xl" />
         
-        {/* Grid Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_800px_600px_at_50%_200px,black,transparent)]" />
       </div>
 
-      {/* Container */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         
-        {/* Two Column Layout */}
         <div className="min-h-[80vh] flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           
-          {/* Left Column - Text Content */}
           <div className="flex-1 w-full max-w-2xl space-y-8 text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -68,7 +43,6 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              {/* Status Badge */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -89,9 +63,7 @@ const HeroSection: React.FC = () => {
                 </span>
               </motion.div>
 
-              {/* Main Headlines with HyperText */}
               <div className="space-y-6">
-                {/* HyperText Welcome Message */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -107,7 +79,6 @@ const HeroSection: React.FC = () => {
                   >
                     Welcome to SERA INDONESIA 
                   </HyperText>
-             
                 </motion.div>
 
                 <motion.h1
@@ -123,7 +94,6 @@ const HeroSection: React.FC = () => {
                   </span>
                   <span>🇮🇩</span>
                   <br />
-                  
                 </motion.h1>
 
                 <motion.p
@@ -138,7 +108,6 @@ const HeroSection: React.FC = () => {
                 </motion.p>
               </div>
 
-              {/* Real Data Stats */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -159,7 +128,6 @@ const HeroSection: React.FC = () => {
                 </div>
               </motion.div>
 
-              {/* CTA Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -183,7 +151,6 @@ const HeroSection: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Right Column - Cards & Alert */}
           <div className="flex-1 w-full max-w-lg">
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -191,9 +158,6 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="space-y-6"
             >
-              
-
-              {/* CardSwap Component with smaller cards and bigger images */}
               <div className="relative h-[400px] mt-4">
                 <CardSwap
                   width="100%"
@@ -212,8 +176,12 @@ const HeroSection: React.FC = () => {
                           alt="Polusi Udara Jakarta"
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.style.display = 'none';
+                            const nextSibling = target.nextElementSibling as HTMLElement;
+                            if (nextSibling) {
+                              nextSibling.style.display = 'flex';
+                            }
                           }}
                         />
                         <div className="w-full h-full bg-gradient-to-br from-gray-400 to-gray-600 hidden items-center justify-center text-white text-xs">
@@ -246,8 +214,12 @@ const HeroSection: React.FC = () => {
                           alt="Kebakaran Hutan Riau"
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.style.display = 'none';
+                            const nextSibling = target.nextElementSibling as HTMLElement;
+                            if (nextSibling) {
+                              nextSibling.style.display = 'flex';
+                            }
                           }}
                         />
                         <div className="w-full h-full bg-gradient-to-br from-orange-400 to-red-600 hidden items-center justify-center text-white text-xs">
@@ -280,8 +252,12 @@ const HeroSection: React.FC = () => {
                           alt="Pemutihan Karang Raja Ampat"
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.style.display = 'none';
+                            const nextSibling = target.nextElementSibling as HTMLElement;
+                            if (nextSibling) {
+                              nextSibling.style.display = 'flex';
+                            }
                           }}
                         />
                         <div className="w-full h-full bg-gradient-to-br from-blue-400 to-teal-600 hidden items-center justify-center text-white text-xs">
@@ -314,8 +290,12 @@ const HeroSection: React.FC = () => {
                           alt="Deforestasi Kalimantan"
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.nextElementSibling.style.display = 'flex';
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.style.display = 'none';
+                            const nextSibling = target.nextElementSibling as HTMLElement;
+                            if (nextSibling) {
+                              nextSibling.style.display = 'flex';
+                            }
                           }}
                         />
                         <div className="w-full h-full bg-gradient-to-br from-green-400 to-brown-600 hidden items-center justify-center text-white text-xs">

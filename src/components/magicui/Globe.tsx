@@ -1,16 +1,44 @@
 "use client";
 
-import createGlobe, { COBEOptions } from "cobe";
+import createGlobe from "cobe";
 import { useMotionValue, useSpring } from "motion/react";
 import { useEffect, useRef } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 const MOVEMENT_DAMPING = 1400;
 
-const GLOBE_CONFIG: COBEOptions = {
-  width: 800,
-  height: 800,
+
+interface GlobeConfig {
+  width: number;
+  height: number;
+  onRender: (state: Record<string, any>) => void;
+  devicePixelRatio: number;
+  phi: number;
+  theta: number;
+  dark: number;
+  diffuse: number;
+  mapSamples: number;
+  mapBrightness: number;
+  baseColor: [number, number, number];
+  markerColor: [number, number, number];
+  glowColor: [number, number, number];
+  markers: Array<{
+    location: [number, number];
+    size: number;
+  }>;
+}
+
+// ✅ Props untuk komponen Globe
+interface GlobeProps {
+  className?: string;
+  config?: Partial<GlobeConfig>;
+}
+
+// ✅ Default config dengan semua property required
+const DEFAULT_GLOBE_CONFIG: GlobeConfig = {
+  width: 1000,
+  height: 1000,
   onRender: () => {},
   devicePixelRatio: 2,
   phi: 0,
@@ -38,16 +66,16 @@ const GLOBE_CONFIG: COBEOptions = {
 
 export function Globe({
   className,
-  config = GLOBE_CONFIG,
-}: {
-  className?: string;
-  config?: COBEOptions;
-}) {
+  config = {},
+}: GlobeProps) {
   let phi = 0;
   let width = 0;
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pointerInteracting = useRef<number | null>(null);
   const pointerInteractionMovement = useRef(0);
+
+
+  const globeConfig: GlobeConfig = { ...DEFAULT_GLOBE_CONFIG, ...config };
 
   const r = useMotionValue(0);
   const rs = useSpring(r, {
@@ -81,11 +109,12 @@ export function Globe({
     window.addEventListener("resize", onResize);
     onResize();
 
+    // ✅ Pastikan semua properties ada dan memiliki type yang benar
     const globe = createGlobe(canvasRef.current!, {
-      ...config,
+      ...globeConfig,
       width: width * 2,
       height: width * 2,
-      onRender: (state) => {
+      onRender: (state: Record<string, any>) => {
         if (!pointerInteracting.current) phi += 0.005;
         state.phi = phi + rs.get();
         state.width = width * 2;
@@ -93,12 +122,17 @@ export function Globe({
       },
     });
 
-    setTimeout(() => (canvasRef.current!.style.opacity = "1"), 0);
+    setTimeout(() => {
+      if (canvasRef.current) {
+        canvasRef.current.style.opacity = "1";
+      }
+    }, 0);
+
     return () => {
       globe.destroy();
       window.removeEventListener("resize", onResize);
     };
-  }, [rs, config]);
+  }, [rs, globeConfig]);
 
   return (
     <div

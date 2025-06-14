@@ -1,7 +1,6 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Leaf } from 'lucide-react';
-import { useTheme } from '../../app/context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 
 interface ThemeToggleProps {
   className?: string;

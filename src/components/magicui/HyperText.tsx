@@ -2,32 +2,19 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-
-// Utility function untuk className merging (mengganti cn dari lib/utils)
-const cn = (...classes: (string | undefined | null | false)[]) => {
-  return classes.filter(Boolean).join(' ');
-};
+import { cn } from "../../lib/utils";
 
 type CharacterSet = string[] | readonly string[];
 
 interface HyperTextProps {
-  /** The text content to be animated */
   children: string;
-  /** Optional className for styling */
   className?: string;
-  /** Duration of the animation in milliseconds */
   duration?: number;
-  /** Delay before animation starts in milliseconds */
   delay?: number;
-  /** Component to render as - defaults to div */
   as?: React.ElementType;
-  /** Whether to start animation when element comes into view */
   startOnView?: boolean;
-  /** Whether to trigger animation on hover */
   animateOnHover?: boolean;
-  /** Custom character set for scramble effect. Defaults to uppercase alphabet */
   characterSet?: CharacterSet;
-  /** Additional props to pass to the motion component */
   [key: string]: any;
 }
 
@@ -48,7 +35,7 @@ export function HyperText({
   characterSet = DEFAULT_CHARACTER_SET,
   ...props
 }: HyperTextProps) {
-  const MotionComponent = motion[Component as keyof typeof motion] || motion.div;
+  const MotionComponent = motion(Component);
 
   const [displayText, setDisplayText] = useState<string[]>(() =>
     children.split(""),
@@ -64,7 +51,6 @@ export function HyperText({
     }
   };
 
-  // Handle animation start based on view or delay
   useEffect(() => {
     if (!startOnView) {
       const startTimeout = setTimeout(() => {
@@ -92,7 +78,6 @@ export function HyperText({
     return () => observer.disconnect();
   }, [delay, startOnView]);
 
-  // Handle scramble animation
   useEffect(() => {
     if (!isAnimating) return;
 

@@ -1,8 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 
-// Types
 type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
@@ -11,10 +10,8 @@ interface ThemeContextType {
   setTheme: (theme: Theme) => void;
 }
 
-// Create context
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// Custom hook to use theme context
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
@@ -23,29 +20,24 @@ export const useTheme = (): ThemeContextType => {
   return context;
 };
 
-// Theme provider props
 interface ThemeProviderProps {
   children: ReactNode;
   defaultTheme?: Theme;
 }
 
-// Theme provider component
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ 
   children, 
   defaultTheme = 'light' 
 }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check if we're in browser environment
     if (typeof window === 'undefined') return defaultTheme;
     
     try {
-      // Check localStorage first
       const savedTheme = localStorage.getItem('sera-theme') as Theme;
       if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
         return savedTheme;
       }
       
-      // Check system preference
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
         return 'dark';
       }
@@ -57,26 +49,17 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }
   });
 
-  // Update DOM and localStorage when theme changes
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
     try {
       const root = window.document.documentElement;
       
-      // Remove previous theme classes
       root.classList.remove('light', 'dark');
-      
-      // Add current theme class
       root.classList.add(theme);
-      
-      // Update data attribute for CSS targeting
       root.setAttribute('data-theme', theme);
-      
-      // Save to localStorage with SERA prefix
       localStorage.setItem('sera-theme', theme);
       
-      // Update meta theme-color for mobile browsers
       const metaThemeColor = document.querySelector('meta[name="theme-color"]');
       if (metaThemeColor) {
         metaThemeColor.setAttribute(
@@ -89,7 +72,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }
   }, [theme]);
 
-  // Listen for system theme changes
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
@@ -97,19 +79,16 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
       
       const handleChange = (e: MediaQueryListEvent) => {
-        // Only update if user hasn't manually set a theme
         const savedTheme = localStorage.getItem('sera-theme');
         if (!savedTheme) {
           setTheme(e.matches ? 'dark' : 'light');
         }
       };
 
-      // Modern browsers
       if (mediaQuery.addEventListener) {
         mediaQuery.addEventListener('change', handleChange);
         return () => mediaQuery.removeEventListener('change', handleChange);
       } 
-      // Legacy browsers
       else if (mediaQuery.addListener) {
         mediaQuery.addListener(handleChange);
         return () => mediaQuery.removeListener(handleChange);
@@ -119,12 +98,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     }
   }, []);
 
-  // Toggle between light and dark
   const toggleTheme = () => {
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
-  // Direct theme setter
   const handleSetTheme = (newTheme: Theme) => {
     setTheme(newTheme);
   };
@@ -142,7 +119,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   );
 };
 
-// HOC for class components (optional)
 export const withTheme = <P extends object>(
   Component: React.ComponentType<P & { theme: Theme; toggleTheme: () => void }>
 ) => {
@@ -152,7 +128,6 @@ export const withTheme = <P extends object>(
   };
 };
 
-// Theme detection utility
 export const getSystemTheme = (): Theme => {
   if (typeof window === 'undefined') return 'light';
   
@@ -166,5 +141,4 @@ export const getSystemTheme = (): Theme => {
   }
 };
 
-// Export types
 export type { Theme, ThemeContextType };

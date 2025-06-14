@@ -9,9 +9,7 @@ import {
   Instagram, 
   Facebook, 
   Youtube,
-  Github,
-  Heart,
-  ArrowUp
+  Github
 } from 'lucide-react';
 import { FOOTER_LINKS } from '../../lib/constants';
 
@@ -30,23 +28,16 @@ const contactInfo = [
 ];
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className="relative bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-slate-900 dark:via-slate-800 dark:to-emerald-950 overflow-hidden">
-      {/* Subtle gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5 dark:from-emerald-500/10 dark:via-transparent dark:to-teal-500/10" />
       <div className="absolute -top-16 -right-16 w-32 h-32 bg-emerald-500/5 dark:bg-emerald-500/10 rounded-full blur-3xl" />
       <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-teal-500/5 dark:bg-teal-500/10 rounded-full blur-3xl" />
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main footer content */}
         <div className="py-12 lg:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
             
-            {/* Brand section */}
             <div className="lg:col-span-4">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -55,7 +46,6 @@ const Footer = () => {
                 viewport={{ once: true }}
                 className="space-y-6"
               >
-                {/* Logo */}
                 <Link to="/" className="inline-flex items-center space-x-3 group">
                   <motion.div 
                     className="relative flex items-center justify-center"
@@ -74,13 +64,11 @@ const Footer = () => {
                   </div>
                 </Link>
                 
-                {/* Description */}
                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
                   Platform digital untuk memantau, melaporkan, dan mengambil aksi nyata 
                   dalam menjaga kelestarian lingkungan Indonesia untuk generasi mendatang.
                 </p>
                 
-                {/* Contact info */}
                 <div className="space-y-3">
                   {contactInfo.map((item, index) => {
                     const Icon = item.icon;
@@ -106,9 +94,7 @@ const Footer = () => {
               </motion.div>
             </div>
             
-            {/* Navigation links */}
             <div className="lg:col-span-6 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {/* Platform links */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -132,7 +118,6 @@ const Footer = () => {
                 </ul>
               </motion.div>
               
-              {/* Community links */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -156,7 +141,6 @@ const Footer = () => {
                 </ul>
               </motion.div>
               
-              {/* Support links */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -180,7 +164,6 @@ const Footer = () => {
                 </ul>
               </motion.div>
               
-              {/* Legal links */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -205,7 +188,6 @@ const Footer = () => {
               </motion.div>
             </div>
             
-            {/* Newsletter & Social */}
             <div className="lg:col-span-2">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -214,7 +196,6 @@ const Footer = () => {
                 viewport={{ once: true }}
                 className="space-y-6"
               >
-                {/* Newsletter */}
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-white mb-4">Newsletter</h4>
                   <p className="text-slate-600 dark:text-slate-300 text-sm mb-4">
@@ -232,7 +213,6 @@ const Footer = () => {
                   </div>
                 </div>
                 
-                {/* Social links */}
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-white mb-4">Ikuti Kami</h4>
                   <div className="flex space-x-3">
@@ -261,7 +241,6 @@ const Footer = () => {
           </div>
         </div>
         
-        {/* Bottom section */}
         <div className="border-t border-slate-300 dark:border-slate-700 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <motion.div
@@ -271,10 +250,7 @@ const Footer = () => {
               viewport={{ once: true }}
               className="flex items-center space-x-2 text-slate-600 dark:text-slate-300 text-sm"
             >
-              <span>© 2025 SERA Platform.</span>
-              <span>Dibuat dengan</span>
-              <Heart className="h-4 w-4 text-red-500 dark:text-red-400 fill-current animate-pulse" />
-              <span>untuk Bumi</span>
+              <span>© 2025 SERA INDONESIA  🇮🇩 | All rights reserved </span>
             </motion.div>
             
             <motion.div
@@ -299,14 +275,11 @@ const Footer = () => {
                   Privacy Policy
                 </Link>
               </div>
-              
-              
             </motion.div>
           </div>
         </div>
       </div>
       
-      {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{ 
