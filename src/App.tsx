@@ -1,13 +1,14 @@
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from '../src/context/ThemeContext';
-import Layout from '../src/components/layout/Layout';
-import Home from '../src/pages/Home';
-import Crisis from '../src/pages/Crisis';
-import Data from '../src/pages/Data';
-import Action from '../src/pages/Action';
-import Community from '../src/pages/Community';
-import About from '../src/pages/About';
-import Report from '../src/pages/Report';
+import { ThemeProvider } from './context/ThemeContext';
+import Layout from './components/layout/Layout';
+import Home from './pages/Home';
+import Crisis from './pages/Crisis';
+import Data from './pages/Data';
+import Action from './pages/Action';
+import Community from './pages/Community';
+import About from './pages/About';
+import Report from './pages/Report';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/report" element={<Report />} />
           </Routes>
         </Layout>
+        <Analytics />
       </Router>
     </ThemeProvider>
   );
