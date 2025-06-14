@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- SERA Meta Information -->
-    <title>SERA INDONESIA 🇮🇩 </title>
+    <title>SERA INDONESIA 🇮🇩</title>
     <meta name="description" content="SERA adalah platform digital untuk aksi lingkungan Indonesia. Bergabunglah dalam melindungi Raja Ampat, mengatasi krisis lingkungan, dan membangun Indonesia yang berkelanjutan." />
     <meta name="keywords" content="lingkungan indonesia, sera, konservasi, raja ampat, krisis lingkungan, aksi nyata, platform lingkungan, environmental monitoring, indonesia environment" />
     <meta name="author" content="SERA Platform" />
@@ -95,49 +95,47 @@
     }
     </script>
     
-    <!-- Enhanced Loading Script with Logo Detection -->
+    <!-- Enhanced Loading Script with Logo Detection & Fast Hide -->
     <script>
-      // Enhanced loading with logo detection
+      // Enhanced loading with logo detection and fast auto-hide
       (function() {
-        // Check if logo exists
+        let logoLoaded = false;
+        let reactLoaded = false;
+        
+        // Check if logo exists (non-blocking)
         const testLogo = new Image();
         testLogo.onload = function() {
-          // Logo exists, keep current CSS
+          logoLoaded = true;
           console.log('🌿 SERA logo loaded successfully');
         };
         
         testLogo.onerror = function() {
-          // Logo not found, fallback to text logo
+          logoLoaded = true; // Mark as "loaded" even if failed
           console.warn('⚠️ SERA logo not found, using text fallback');
           
           // Create fallback style
           const fallbackStyle = document.createElement('style');
           fallbackStyle.textContent = `
-            #root:empty::before {
-              content: "SERA" !important;
+            .sera-logo-container .sera-logo {
+              background-image: none !important;
               width: auto !important;
               height: auto !important;
-              background-image: none !important;
-              font-size: 2.5rem !important;
+              font-size: 4rem !important;
               font-weight: 900 !important;
               color: #16a34a !important;
-              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-              margin: 0 auto 24px auto !important;
-              animation: logoSpin 2s ease-in-out infinite !important;
-              display: block !important;
+              text-shadow: 0 4px 16px rgba(22, 163, 74, 0.3) !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
             }
             
-            .dark #root:empty::before {
+            .sera-logo-container .sera-logo::before {
+              content: "SERA" !important;
+            }
+            
+            .dark .sera-logo-container .sera-logo {
               color: #86efac !important;
-            }
-            
-            @keyframes logoSpin {
-              0%, 100% {
-                transform: scale(1) rotate(0deg);
-              }
-              50% {
-                transform: scale(1.1) rotate(5deg);
-              }
+              text-shadow: 0 4px 16px rgba(134, 239, 172, 0.3) !important;
             }
           `;
           document.head.appendChild(fallbackStyle);
@@ -145,35 +143,68 @@
         
         testLogo.src = '/assets/icons/logo.png';
         
-        // Auto-hide loading when React mounts
+        // Force hide loading after maximum 3 seconds
+        const maxLoadTime = setTimeout(() => {
+          hideLoadingScreen();
+        }, 3000);
+        
+        // Function to hide loading screen
+        function hideLoadingScreen() {
+          const loadingScreen = document.querySelector('.sera-loading-screen');
+          if (loadingScreen && loadingScreen.style.display !== 'none') {
+            loadingScreen.style.opacity = '0';
+            loadingScreen.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+              document.body.style.overflow = ''; // Restore scroll
+            }, 300);
+            
+            clearTimeout(maxLoadTime);
+          }
+        }
+        
+        // Auto-hide loading when React mounts (faster detection)
         const observer = new MutationObserver(function(mutations) {
           mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length > 0) {
               const root = document.getElementById('root');
-              if (root && root.children.length > 0) {
-                // React has mounted, hide loading
-                const hideStyle = document.createElement('style');
-                hideStyle.textContent = `
-                  #root {
-                    background: transparent !important;
-                    animation: none !important;
-                  }
-                  #root::before,
-                  #root::after {
-                    display: none !important;
-                  }
-                `;
-                document.head.appendChild(hideStyle);
+              if (root && (root.children.length > 0 || root.innerHTML.trim() !== '')) {
+                reactLoaded = true;
+                // Hide immediately when React loads
+                setTimeout(hideLoadingScreen, 100);
                 observer.disconnect();
               }
             }
           });
         });
         
+        // Start observing immediately
         const rootElement = document.getElementById('root');
         if (rootElement) {
-          observer.observe(rootElement, { childList: true, subtree: true });
+          observer.observe(rootElement, { 
+            childList: true, 
+            subtree: true,
+            characterData: true 
+          });
+          
+          // Also check if React already loaded
+          if (rootElement.children.length > 0 || rootElement.innerHTML.trim() !== '') {
+            setTimeout(hideLoadingScreen, 100);
+          }
         }
+        
+        // Fast check every 500ms for React content
+        const fastCheck = setInterval(() => {
+          const root = document.getElementById('root');
+          if (root && (root.children.length > 0 || root.innerHTML.trim() !== '')) {
+            hideLoadingScreen();
+            clearInterval(fastCheck);
+          }
+        }, 500);
+        
+        // Clear fast check after 5 seconds
+        setTimeout(() => clearInterval(fastCheck), 5000);
         
       })();
     </script>
@@ -211,6 +242,8 @@
         background-color: #ffffff;
         color: #171717;
         transition: background-color 0.3s ease, color 0.3s ease;
+        overflow: hidden;
+        will-change: opacity, transform;
       }
       
       .dark body {
@@ -218,190 +251,418 @@
         color: #fafafa;
       }
       
-      /* Enhanced Loading Screen */
-      #root:empty {
+      /* Modern Loading Screen */
+      .sera-loading-screen {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, 
+          #f0fdf4 0%, 
+          #dcfce7 25%, 
+          #bbf7d0 50%, 
+          #86efac 75%, 
+          #22c55e 100%);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         z-index: 9999;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
       }
       
-      .dark #root:empty {
-        background: linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%);
+      .dark .sera-loading-screen {
+        background: linear-gradient(135deg, 
+          #052e16 0%, 
+          #14532d 25%, 
+          #166534 50%, 
+          #15803d 75%, 
+          #16a34a 100%);
       }
       
-      /* Logo - positioned relative to flex container */
-      #root:empty::before {
-        content: "";
-        width: 80px;
-        height: 80px;
+      /* Animated Background Particles */
+      .sera-loading-screen::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.3), transparent),
+          radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.2), transparent),
+          radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.3), transparent);
+        background-repeat: repeat;
+        background-size: 200px 100px;
+        animation: particleFloat 20s linear infinite;
+        opacity: 0.6;
+      }
+      
+      .dark .sera-loading-screen::before {
+        background-image: 
+          radial-gradient(2px 2px at 20px 30px, rgba(134,239,172,0.3), transparent),
+          radial-gradient(2px 2px at 40px 70px, rgba(134,239,172,0.2), transparent),
+          radial-gradient(1px 1px at 90px 40px, rgba(134,239,172,0.3), transparent),
+          radial-gradient(1px 1px at 130px 80px, rgba(134,239,172,0.2), transparent),
+          radial-gradient(2px 2px at 160px 30px, rgba(134,239,172,0.3), transparent);
+      }
+      
+      @keyframes particleFloat {
+        0% { transform: translateY(0px); }
+        100% { transform: translateY(-100px); }
+      }
+      
+      /* Main Content Container */
+      .sera-content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        max-width: 90%;
+      }
+      
+      /* Logo Container with Glassmorphism */
+      .sera-logo-container {
+        position: relative;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2rem;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        animation: logoFloat 3s ease-in-out infinite;
+      }
+      
+      .dark .sera-logo-container {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+      
+      /* Logo */
+      .sera-logo {
+        width: 120px;
+        height: 120px;
         background-image: url('/assets/icons/logo.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        animation: logoSpin 2s ease-in-out infinite;
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-        display: block;
-        margin: 0 auto 24px auto;
+        filter: drop-shadow(0 8px 16px rgba(22, 163, 74, 0.3));
+        animation: logoSpin 4s ease-in-out infinite;
       }
       
-      /* Text - positioned relative to flex container */
-      #root:empty::after {
-        content: "Memuat SERA Indonesia 🇮🇩";
-        font-size: 1.1rem;
+      .dark .sera-logo {
+        filter: drop-shadow(0 8px 16px rgba(134, 239, 172, 0.3));
+      }
+      
+      /* Brand Text */
+      .sera-brand {
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Title Styling */
+      .sera-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #16a34a;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-shadow: 0 4px 16px rgba(22, 163, 74, 0.3);
+        animation: titleGlow 2s ease-in-out infinite alternate;
+        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.2;
+      }
+      
+      .dark .sera-title {
+        color: #86efac;
+        text-shadow: 0 4px 16px rgba(134, 239, 172, 0.3);
+      }
+      
+      .sera-subtitle {
+        font-size: 1.25rem;
         font-weight: 600;
         color: #16a34a;
-        text-align: center;
-        animation: textPulse 2s ease-in-out infinite;
-        display: block;
-        margin: 0 auto;
+        margin: 0;
+        opacity: 0.9;
+        animation: subtitleFade 2s ease-in-out infinite alternate;
       }
       
-      .dark #root:empty::after {
+      .dark .sera-subtitle {
         color: #86efac;
       }
       
-      /* Loading Animations */
+      /* Loading Text */
+      .sera-loading-text {
+        margin: 2rem 0 1rem 0;
+      }
+      
+      .loading-message {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: #059669;
+        margin: 0 0 0.5rem 0;
+        animation: messageSlide 2s ease-in-out infinite;
+      }
+      
+      .dark .loading-message {
+        color: #6ee7b7;
+      }
+      
+      .loading-submessage {
+        font-size: 0.875rem;
+        color: #047857;
+        opacity: 0.8;
+        margin: 0;
+        animation: submessageFade 3s ease-in-out infinite;
+      }
+      
+      .dark .loading-submessage {
+        color: #34d399;
+      }
+      
+      /* Modern Progress Bar */
+      .sera-progress {
+        width: 300px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 1.5rem 0;
+        position: relative;
+        backdrop-filter: blur(10px);
+      }
+      
+      .dark .sera-progress {
+        background: rgba(0, 0, 0, 0.3);
+      }
+      
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, #16a34a, #22c55e, #4ade80, #86efac);
+        background-size: 200% 100%;
+        border-radius: 3px;
+        animation: progressFlow 2s ease-in-out infinite;
+        box-shadow: 0 0 20px rgba(22, 163, 74, 0.5);
+      }
+      
+      .dark .progress-bar {
+        box-shadow: 0 0 20px rgba(134, 239, 172, 0.5);
+      }
+      
+      /* Loading Dots */
+      .sera-dots {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      
+      .dot {
+        width: 12px;
+        height: 12px;
+        background: #16a34a;
+        border-radius: 50%;
+        animation: dotPulse 1.5s ease-in-out infinite;
+        box-shadow: 0 0 10px rgba(22, 163, 74, 0.5);
+      }
+      
+      .dark .dot {
+        background: #86efac;
+        box-shadow: 0 0 10px rgba(134, 239, 172, 0.5);
+      }
+      
+      .dot:nth-child(2) { animation-delay: 0.2s; }
+      .dot:nth-child(3) { animation-delay: 0.4s; }
+      
+      /* Indonesia Flag Animation */
+      .indonesia-flag {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        font-size: 2rem;
+        animation: flagWave 2s ease-in-out infinite;
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+      }
+      
+      /* Animations */
+      @keyframes logoFloat {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-10px) scale(1.05); }
+      }
+      
       @keyframes logoSpin {
-        0%, 100% {
-          transform: rotate(0deg) scale(1);
-        }
-        50% {
-          transform: rotate(180deg) scale(1.1);
-        }
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(5deg); }
+        75% { transform: rotate(-5deg); }
       }
       
-      @keyframes textPulse {
-        0%, 100% {
-          opacity: 1;
-          transform: translateY(0);
+      @keyframes titleGlow {
+        0% { text-shadow: 0 0 20px rgba(22, 163, 74, 0.5); }
+        100% { text-shadow: 0 0 30px rgba(22, 163, 74, 0.8); }
+      }
+      
+      @keyframes subtitleFade {
+        0% { opacity: 0.7; }
+        100% { opacity: 1; }
+      }
+      
+      @keyframes messageSlide {
+        0%, 100% { transform: translateX(0px); }
+        50% { transform: translateX(5px); }
+      }
+      
+      @keyframes submessageFade {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 0.9; }
+      }
+      
+      @keyframes progressFlow {
+        0% { 
+          width: 0%; 
+          background-position: 0% 0%;
         }
-        50% {
-          opacity: 0.7;
-          transform: translateY(-4px);
+        25% { 
+          width: 30%; 
+          background-position: 50% 0%;
         }
-      }
-      
-      /* Loading Dots - positioned below text */
-      #root:empty {
-        position: relative;
-      }
-      
-      #root:empty::before {
-        position: relative;
-        z-index: 2;
-      }
-      
-      #root:empty::after {
-        position: relative;
-        z-index: 2;
-      }
-      
-      /* Create loading dots container with absolute positioning */
-      #root:empty {
-        background-image: 
-          radial-gradient(circle, #16a34a 3px, transparent 3px),
-          radial-gradient(circle, #16a34a 3px, transparent 3px),
-          radial-gradient(circle, #16a34a 3px, transparent 3px);
-        background-size: 12px 12px;
-        background-position: 
-          calc(50% - 24px) calc(50% + 80px),
-          50% calc(50% + 80px),
-          calc(50% + 24px) calc(50% + 80px);
-        background-repeat: no-repeat;
-        animation: dotsAnimation 1.5s ease-in-out infinite;
-      }
-      
-      .dark #root:empty {
-        background-image: 
-          radial-gradient(circle, #86efac 3px, transparent 3px),
-          radial-gradient(circle, #86efac 3px, transparent 3px),
-          radial-gradient(circle, #86efac 3px, transparent 3px),
-          linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%);
-        background-size: 
-          12px 12px,
-          12px 12px,
-          12px 12px,
-          100% 100%;
-        background-position: 
-          calc(50% - 24px) calc(50% + 80px),
-          50% calc(50% + 80px),
-          calc(50% + 24px) calc(50% + 80px),
-          0 0;
-        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-        animation: dotsAnimation 1.5s ease-in-out infinite;
-      }
-      
-      @keyframes dotsAnimation {
-        0%, 20% {
-          background-size: 
-            16px 16px, 10px 10px, 10px 10px,
-            100% 100%;
+        50% { 
+          width: 65%; 
+          background-position: 100% 0%;
         }
-        33%, 53% {
-          background-size: 
-            10px 10px, 16px 16px, 10px 10px,
-            100% 100%;
+        75% { 
+          width: 85%; 
+          background-position: 150% 0%;
         }
-        66%, 86% {
-          background-size: 
-            10px 10px, 10px 10px, 16px 16px,
-            100% 100%;
-        }
-        100% {
-          background-size: 
-            16px 16px, 10px 10px, 10px 10px,
-            100% 100%;
+        100% { 
+          width: 100%; 
+          background-position: 200% 0%;
         }
       }
       
-      /* Responsive */
-      @media (max-width: 640px) {
-        #root:empty::before {
-          width: 64px;
-          height: 64px;
+      @keyframes dotPulse {
+        0%, 100% { 
+          transform: scale(1); 
+          opacity: 1; 
+        }
+        50% { 
+          transform: scale(1.3); 
+          opacity: 0.7; 
+        }
+      }
+      
+      @keyframes flagWave {
+        0%, 100% { transform: rotate(0deg) scale(1); }
+        25% { transform: rotate(5deg) scale(1.1); }
+        75% { transform: rotate(-5deg) scale(1.1); }
+      }
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .sera-logo-container {
+          padding: 1.5rem;
+          margin-bottom: 1.5rem;
         }
         
-        #root:empty::after {
+        .sera-logo {
+          width: 80px;
+          height: 80px;
+        }
+        
+        .sera-title {
+          font-size: 2.5rem;
+        }
+        
+        .sera-subtitle {
           font-size: 1rem;
         }
         
-        #root:empty {
-          background-position: 
-            calc(50% - 20px) calc(50% + 60px),
-            50% calc(50% + 60px),
-            calc(50% + 20px) calc(50% + 60px);
+        .loading-message {
+          font-size: 1rem;
         }
         
-        .dark #root:empty {
-          background-position: 
-            calc(50% - 20px) calc(50% + 60px),
-            50% calc(50% + 60px),
-            calc(50% + 20px) calc(50% + 60px),
-            0 0;
+        .sera-progress {
+          width: 250px;
+        }
+        
+        .indonesia-flag {
+          bottom: 1rem;
+          right: 1rem;
+          font-size: 1.5rem;
         }
       }
       
-      /* Auto hide when React loads */
-      #root:not(:empty) {
-        background: transparent !important;
-        animation: none !important;
+      @media (max-width: 480px) {
+        .sera-content {
+          max-width: 95%;
+        }
+        
+        .sera-title {
+          font-size: 2rem;
+        }
+        
+        .sera-progress {
+          width: 200px;
+        }
       }
       
-      #root:not(:empty)::before,
-      #root:not(:empty)::after {
-        display: none !important;
+      /* Hide loading when React loads */
+      #root:not(:empty) + .sera-loading-screen {
+        opacity: 0;
+        transform: scale(0.95);
+        pointer-events: none;
       }
     </style>
   </head>
   <body>
+    <!-- Modern Loading Screen -->
+    <div class="sera-loading-screen">
+      <div class="sera-content">
+        <!-- Logo Container -->
+        <div class="sera-logo-container">
+          <div class="sera-logo"></div>
+        </div>
+        
+        <!-- Brand -->
+        <div class="sera-brand">
+          <h1 class="sera-title">SERA INDONESIA 🇮🇩</h1>
+          <p class="sera-subtitle">Semesta Ruang Alam</p>
+        </div>
+        
+        <!-- Loading Text -->
+        <div class="sera-loading-text">
+          <p class="loading-message">Memuat Platform Lingkungan Indonesia</p>
+          <p class="loading-submessage">Bersiap untuk aksi nyata melindungi alam</p>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="sera-progress">
+          <div class="progress-bar"></div>
+        </div>
+        
+        <!-- Loading Dots -->
+        <div class="sera-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      
+      <!-- Indonesia Flag -->
+      <div class="indonesia-flag">🇮🇩</div>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

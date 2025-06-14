@@ -9,6 +9,7 @@ import Action from './pages/Action';
 import Community from './pages/Community';
 import About from './pages/About';
 import Report from './pages/Report';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
             <Route path="/community" element={<Community />} />
             <Route path="/about" element={<About />} />
             <Route path="/report" element={<Report />} />
+            
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
         <Analytics />
