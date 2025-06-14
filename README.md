@@ -64,7 +64,6 @@ Laporkan masalah lingkungan di sekitar Anda dengan mudah.
 - **🎯 Tailwind CSS** - Utility-first CSS framework
 - **✨ Framer Motion** - Smooth animations
 - **📊 Recharts** - Data visualization
-- **🗺️ Leaflet** - Interactive maps
 - **⚡ Vite** - Lightning fast build tool
 
 ---
@@ -80,7 +79,7 @@ SERA menggunakan design system yang terinspirasi dari alam Indonesia:
 - **🚨 Coral Alert** `#ea580c` - Warning untuk krisis lingkungan
 
 ### 🔤 **Typography**
-- **Plus Jakarta Sans** - Font modern dan readable untuk semua device
+- **Plus Jakarta Sans** - 
 
 ### 🎭 **Theme Support**
 - ☀️ **Light Mode** - Tema cerah untuk penggunaan siang hari
@@ -88,9 +87,3 @@ SERA menggunakan design system yang terinspirasi dari alam Indonesia:
 
 ---
 
-## 🚀 Quick Start
-
-### 📋 Prerequisites
-```bash
-Node.js >= 18.0.0
-npm >= 8.0.0
