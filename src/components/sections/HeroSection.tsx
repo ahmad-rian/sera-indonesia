@@ -22,6 +22,75 @@ const HeroSection: React.FC = () => {
     };
   }, []);
 
+ 
+  const cardData = [
+    {
+      id: 1,
+      image: "/assets/images/polusi_udara.webp",
+      alt: "Polusi Udara Jakarta",
+      title: "Polusi Udara Jakarta",
+      status: "BURUK",
+      statusColor: "bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400",
+      description: "Kualitas udara Jakarta mencapai level tidak sehat dengan konsentrasi PM2.5 tinggi",
+      indicator: "AQI 89 - Tidak Sehat untuk Sensitif",
+      indicatorColor: "text-red-600 dark:text-red-400",
+      fallbackGradient: "from-gray-400 to-gray-600",
+      cardClass: "p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80",
+      imageHeight: "h-52"
+    },
+    {
+      id: 2,
+      image: "/assets/images/kebakaran_riau.webp",
+      alt: "Kebakaran Hutan Riau",
+      title: "Kebakaran Hutan Riau",
+      status: "DARURAT",
+      statusColor: "bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400",
+      description: "Kebakaran hutan dan lahan gambut yang meluas mengancam ekosistem dan kualitas udara",
+      indicator: "156 Titik Api Terdeteksi Hari Ini",
+      indicatorColor: "text-orange-600 dark:text-orange-400",
+      fallbackGradient: "from-orange-400 to-red-600",
+      cardClass: "p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80",
+      imageHeight: "h-52"
+    },
+    {
+      id: 3,
+      image: "/assets/images/raja_ampat.webp",
+      alt: "Pemutihan Karang Raja Ampat",
+      title: "Krisis Raja Ampat",
+      status: "KRITIS",
+      statusColor: "bg-yellow-100 dark:bg-yellow-500/20 text-yellow-600 dark:text-yellow-400",
+      description: "Pemutihan karang massal akibat pemanasan air laut mengancam biodiversitas laut",
+      indicator: "45% Terumbu Karang Mengalami Pemutihan",
+      indicatorColor: "text-blue-600 dark:text-blue-400",
+      fallbackGradient: "from-blue-400 to-teal-600",
+      cardClass: "p-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-80 h-96",
+      imageHeight: "h-40"
+    },
+    {
+      id: 4,
+      image: "/assets/images/deforasi_kalimantan.webp",
+      alt: "Deforestasi Kalimantan",
+      title: "Deforestasi Kalimantan",
+      status: "TINGGI",
+      statusColor: "bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400",
+      description: "Penggundulan hutan untuk perkebunan kelapa sawit dan pertambangan terus meningkat",
+      indicator: "6.2 Juta Ha Hutan Hilang (2023)",
+      indicatorColor: "text-green-600 dark:text-green-400",
+      fallbackGradient: "from-green-400 to-brown-600",
+      cardClass: "p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80",
+      imageHeight: "h-52"
+    }
+  ];
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.currentTarget as HTMLImageElement;
+    const fallback = target.nextElementSibling as HTMLElement;
+    target.style.display = 'none';
+    if (fallback) {
+      fallback.style.display = 'flex';
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-white dark:bg-slate-900 overflow-hidden">
       
@@ -168,157 +237,38 @@ const HeroSection: React.FC = () => {
                   pauseOnHover={true}
                   easing="linear"
                 >
-                  <Card customClass="p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80">
-                    <div className="mb-3">
-                      <div className="w-full h-52 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-3">
-                        <img 
-                          src="../../../public/assets/images/polusi_udara.webp" 
-                          alt="Polusi Udara Jakarta"
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            target.style.display = 'none';
-                            const nextSibling = target.nextElementSibling as HTMLElement;
-                            if (nextSibling) {
-                              nextSibling.style.display = 'flex';
-                            }
-                          }}
-                        />
-                        <div className="w-full h-full bg-gradient-to-br from-gray-400 to-gray-600 hidden items-center justify-center text-white text-xs">
-                          Polusi Udara Jakarta
+                  {cardData.map((card) => (
+                    <Card key={card.id} customClass={card.cardClass}>
+                      <div className="mb-3">
+                        <div className={`w-full ${card.imageHeight} rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-3`}>
+                          <img 
+                            src={card.image}
+                            alt={card.alt}
+                            className="w-full h-full object-cover"
+                            onError={handleImageError}
+                          />
+                          <div className={`w-full h-full bg-gradient-to-br ${card.fallbackGradient} hidden items-center justify-center text-white text-xs`}>
+                            {card.alt}
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <h3 className={`${card.id === 3 ? 'text-xl' : 'text-base'} font-semibold text-slate-900 dark:text-white`}>
+                            {card.title}
+                          </h3>
+                          <span className={`px-2 py-1 ${card.statusColor} text-xs font-medium rounded-md`}>
+                            {card.status}
+                          </span>
                         </div>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-base font-semibold text-slate-900 dark:text-white">
-                          Polusi Udara Jakarta
-                        </h3>
-                        <span className="px-2 py-1 bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 text-xs font-medium rounded-md">
-                          BURUK
-                        </span>
+                      <p className={`${card.id === 3 ? 'text-sm mb-4' : 'text-xs mb-2'} text-slate-600 dark:text-slate-300 line-clamp-2`}>
+                        {card.description}
+                      </p>
+                      <div className={`flex items-center ${card.id === 3 ? 'text-sm' : 'text-xs'} ${card.indicatorColor} font-medium`}>
+                        <div className="w-2 h-2 bg-current rounded-full mr-2" />
+                        {card.indicator}
                       </div>
-                    </div>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 mb-2 line-clamp-2">
-                      Kualitas udara Jakarta mencapai level tidak sehat dengan konsentrasi PM2.5 tinggi
-                    </p>
-                    <div className="flex items-center text-xs text-red-600 dark:text-red-400 font-medium">
-                      <div className="w-2 h-2 bg-red-500 rounded-full mr-2" />
-                      AQI 89 - Tidak Sehat untuk Sensitif
-                    </div>
-                  </Card>
-
-                  <Card customClass="p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80">
-                    <div className="mb-3">
-                      <div className="w-full h-52 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-3">
-                        <img 
-                          src="../../../public/assets/images/kebakaran_riau.webp" 
-                          alt="Kebakaran Hutan Riau"
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            target.style.display = 'none';
-                            const nextSibling = target.nextElementSibling as HTMLElement;
-                            if (nextSibling) {
-                              nextSibling.style.display = 'flex';
-                            }
-                          }}
-                        />
-                        <div className="w-full h-full bg-gradient-to-br from-orange-400 to-red-600 hidden items-center justify-center text-white text-xs">
-                          Kebakaran Hutan Riau
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-base font-semibold text-slate-900 dark:text-white">
-                          Kebakaran Hutan Riau
-                        </h3>
-                        <span className="px-2 py-1 bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-400 text-xs font-medium rounded-md">
-                          DARURAT
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 mb-2 line-clamp-2">
-                      Kebakaran hutan dan lahan gambut yang meluas mengancam ekosistem dan kualitas udara
-                    </p>
-                    <div className="flex items-center text-xs text-orange-600 dark:text-orange-400 font-medium">
-                      <div className="w-2 h-2 bg-orange-500 rounded-full mr-2" />
-                      156 Titik Api Terdeteksi Hari Ini
-                    </div>
-                  </Card>
-
-                  <Card customClass="p-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-80 h-96">
-                    <div className="mb-6">
-                      <div className="w-full h-40 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-4">
-                        <img 
-                          src="../../../public/assets/images/raja_ampat.webp" 
-                          alt="Pemutihan Karang Raja Ampat"
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            target.style.display = 'none';
-                            const nextSibling = target.nextElementSibling as HTMLElement;
-                            if (nextSibling) {
-                              nextSibling.style.display = 'flex';
-                            }
-                          }}
-                        />
-                        <div className="w-full h-full bg-gradient-to-br from-blue-400 to-teal-600 hidden items-center justify-center text-white text-xs">
-                          Pemutihan Karang Raja Ampat
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
-                          Krisis Raja Ampat
-                        </h3>
-                        <span className="px-3 py-1 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 text-sm font-medium rounded-md">
-                          KRITIS
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
-                      Pemutihan karang massal akibat pemanasan air laut mengancam biodiversitas laut
-                    </p>
-                    <div className="flex items-center text-sm text-blue-600 dark:text-blue-400 font-medium">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mr-2" />
-                      45% Terumbu Karang Mengalami Pemutihan
-                    </div>
-                  </Card>
-
-                  <Card customClass="p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80">
-                    <div className="mb-3">
-                      <div className="w-full h-52 rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-3">
-                        <img 
-                          src="../../../public/assets/images/deforasi_kalimantan.webp" 
-                          alt="Deforestasi Kalimantan"
-                          className="w-full h-full object-cover"
-                          onError={(e) => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            target.style.display = 'none';
-                            const nextSibling = target.nextElementSibling as HTMLElement;
-                            if (nextSibling) {
-                              nextSibling.style.display = 'flex';
-                            }
-                          }}
-                        />
-                        <div className="w-full h-full bg-gradient-to-br from-green-400 to-brown-600 hidden items-center justify-center text-white text-xs">
-                          Deforestasi Kalimantan
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-base font-semibold text-slate-900 dark:text-white">
-                          Deforestasi Kalimantan
-                        </h3>
-                        <span className="px-2 py-1 bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 text-xs font-medium rounded-md">
-                          TINGGI
-                        </span>
-                      </div>
-                    </div>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 mb-2 line-clamp-2">
-                      Penggundulan hutan untuk perkebunan kelapa sawit dan pertambangan terus meningkat
-                    </p>
-                    <div className="flex items-center text-xs text-green-600 dark:text-green-400 font-medium">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2" />
-                      6.2 Juta Ha Hutan Hilang (2023)
-                    </div>
-                  </Card>
+                    </Card>
+                  ))}
                 </CardSwap>
               </div>
             </motion.div>
