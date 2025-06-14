@@ -26,13 +26,12 @@ import {
   TreePine,
   Mountain,
   Building,
-  Mail,
-  Phone,
+
 } from "lucide-react"
 import { SpinningText } from "../components/magicui/SpinningText"
 import { useTheme } from "../context/ThemeContext"
 
-// Forum categories
+
 const forumCategories = [
   {
     id: "region",
@@ -321,15 +320,7 @@ const Community: React.FC = () => {
   const { theme } = useTheme()
   const [activeTab, setActiveTab] = useState("forums")
 
-  const getCategoryIcon = (category: string) => {
-    const icons: Record<string, React.ReactNode> = {
-      cleanup: <Trash2 className="h-4 w-4 text-blue-500" />,
-      workshop: <BookOpen className="h-4 w-4 text-purple-500" />,
-      webinar: <Globe className="h-4 w-4 text-green-500" />,
-      planting: <TreePine className="h-4 w-4 text-emerald-500" />,
-    }
-    return icons[category] || <Calendar className="h-4 w-4 text-gray-500" />
-  }
+  
 
   const tabs = [
     { id: "forums", name: "Forum Diskusi", icon: MessageCircle },

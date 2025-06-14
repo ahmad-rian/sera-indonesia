@@ -113,7 +113,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
   );
   
   const refs = useMemo<CardRef[]>(
-    () => childArr.map(() => React.createRef<HTMLDivElement>()),
+    () => childArr.map(() => React.createRef<HTMLDivElement>() as RefObject<HTMLDivElement>),
     [childArr]
   );
 
@@ -127,19 +127,23 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
   useEffect(() => {
     const total = refs.length;
-    refs.forEach((r, i) =>
-      placeNow(
-        r.current!,
-        makeSlot(i, cardDistance, verticalDistance, total),
-        skewAmount
-      )
-    );
+    refs.forEach((r, i) => {
+      if (r.current) {
+        placeNow(
+          r.current,
+          makeSlot(i, cardDistance, verticalDistance, total),
+          skewAmount
+        );
+      }
+    });
 
     const swap = () => {
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
-      const elFront = refs[front].current!;
+      const elFront = refs[front].current;
+      if (!elFront) return;
+      
       const tl = gsap.timeline();
       tlRef.current = tl;
 
@@ -151,7 +155,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
       tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
       rest.forEach((idx, i) => {
-        const el = refs[idx].current!;
+        const el = refs[idx].current;
+        if (!el) return;
+        
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, "promote");
         tl.to(
@@ -200,8 +206,8 @@ const CardSwap: React.FC<CardSwapProps> = ({
     swap();
     intervalRef.current = window.setInterval(swap, delay);
 
-    if (pauseOnHover) {
-      const node = container.current!;
+    if (pauseOnHover && container.current) {
+      const node = container.current;
       const pause = () => {
         tlRef.current?.pause();
         if (intervalRef.current) {

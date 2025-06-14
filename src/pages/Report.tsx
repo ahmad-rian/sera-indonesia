@@ -12,7 +12,7 @@ import {
   Send,
   Clock,
   CheckCircle,
-  Users,
+
   TrendingUp,
   Factory,
   TreePine,
@@ -27,12 +27,7 @@ import {
   FileText,
   Star,
   MessageCircle,
-  Share2,
   Heart,
-  Filter,
-  Search,
-  Calendar,
-  BarChart3
 } from 'lucide-react';
 
 interface Report {

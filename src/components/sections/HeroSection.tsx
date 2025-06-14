@@ -7,7 +7,7 @@ import CardSwap, { Card } from '../magicui/CardSwap';
 import { HyperText } from '../magicui/HyperText';
 
 const HeroSection: React.FC = () => {
-  const [currentAlert, setCurrentAlert] = useState(0);
+  const [, setCurrentAlert] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {

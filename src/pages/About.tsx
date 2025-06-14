@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef } from "react"
+import { motion } from "framer-motion"
 import {
   Globe,
   Leaf,
@@ -28,8 +28,8 @@ const About = () => {
   const teamRef = useRef<HTMLDivElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
 
-  const { scrollYProgress } = useScroll()
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1])
+
+
 
   const features = [
     {

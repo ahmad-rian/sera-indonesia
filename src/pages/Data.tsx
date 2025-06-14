@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LineChart,
@@ -645,7 +645,7 @@ const Data = () => {
                         fill="#8884d8"
                         dataKey="value"
                       >
-                        {carbonEmissions.map((entry, index) => (
+                        {carbonEmissions.map((_, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
