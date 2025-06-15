@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- SERA Meta Information -->
     <title>SERA INDONESIA 🇮🇩 </title>
     <meta name="description" content="SERA adalah platform digital untuk aksi lingkungan Indonesia. Bergabunglah dalam melindungi Raja Ampat, mengatasi krisis lingkungan, dan membangun Indonesia yang berkelanjutan." />
     <meta name="keywords" content="lingkungan indonesia, sera, konservasi, raja ampat, krisis lingkungan, aksi nyata, platform lingkungan, environmental monitoring, indonesia environment" />
@@ -12,7 +11,6 @@
     <meta name="robots" content="index, follow" />
     <meta name="language" content="Indonesian" />
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://sera.id/" />
     <meta property="og:title" content="SERA - Semesta Ruang Alam | Platform Aksi Lingkungan Indonesia" />
@@ -23,7 +21,6 @@
     <meta property="og:locale" content="id_ID" />
     <meta property="og:site_name" content="SERA Indonesia" />
     
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@sera_indonesia" />
     <meta name="twitter:creator" content="@sera_indonesia" />
@@ -32,14 +29,12 @@
     <meta name="twitter:description" content="Bergabunglah dalam melindungi lingkungan Indonesia. Aksi nyata dimulai dari SERA." />
     <meta name="twitter:image" content="/assets/sera-twitter-image.jpg" />
     
-    <!-- Theme and Colors -->
     <meta name="theme-color" content="#16a34a" />
     <meta name="msapplication-TileColor" content="#16a34a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="SERA Indonesia" />
     
-    <!-- Icons & Manifest -->
     <link rel="icon" type="image/png" href="/assets/icons/logo.png" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/sera-icon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/sera-icon-32.png" />
@@ -48,20 +43,18 @@
     <link rel="mask-icon" href="/assets/icons/sera-icon.svg" color="#16a34a" />
     <link rel="manifest" href="/manifest.json" />
     
-    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Canonical URL -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
     <link rel="canonical" href="https://sera.id/" />
     
-    <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
 
     <link rel="manifest" href="/manifest.json">
     
-    <!-- Schema.org structured data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -95,48 +88,64 @@
     }
     </script>
     
-    <!-- Enhanced Loading Script with Logo Detection -->
     <script>
-      // Enhanced loading with logo detection
       (function() {
-        // Check if logo exists
         const testLogo = new Image();
         testLogo.onload = function() {
-          // Logo exists, keep current CSS
           console.log('🌿 SERA logo loaded successfully');
         };
         
         testLogo.onerror = function() {
-          // Logo not found, fallback to text logo
           console.warn('⚠️ SERA logo not found, using text fallback');
           
-          // Create fallback style
           const fallbackStyle = document.createElement('style');
           fallbackStyle.textContent = `
-            #root:empty::before {
+            .sera-logo-container::before {
               content: "SERA" !important;
               width: auto !important;
               height: auto !important;
               background-image: none !important;
-              font-size: 2.5rem !important;
+              font-size: 4rem !important;
               font-weight: 900 !important;
-              color: #16a34a !important;
-              text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-              margin: 0 auto 24px auto !important;
-              animation: logoSpin 2s ease-in-out infinite !important;
+              background: linear-gradient(135deg, #16a34a 0%, #22c55e 50%, #4ade80 100%) !important;
+              -webkit-background-clip: text !important;
+              -webkit-text-fill-color: transparent !important;
+              background-clip: text !important;
+              text-shadow: none !important;
+              animation: logoMegaFloat 4s ease-in-out infinite, gradientShift 6s ease-in-out infinite !important;
               display: block !important;
+              letter-spacing: 0.2em !important;
+              font-family: 'Inter', sans-serif !important;
             }
             
-            .dark #root:empty::before {
-              color: #86efac !important;
+            .dark .sera-logo-container::before {
+              background: linear-gradient(135deg, #86efac 0%, #4ade80 50%, #22c55e 100%) !important;
+              -webkit-background-clip: text !important;
+              -webkit-text-fill-color: transparent !important;
+              background-clip: text !important;
             }
             
-            @keyframes logoSpin {
+            @keyframes logoMegaFloat {
               0%, 100% {
-                transform: scale(1) rotate(0deg);
+                transform: translateY(0px) scale(1) rotate(0deg);
+              }
+              25% {
+                transform: translateY(-20px) scale(1.05) rotate(1deg);
               }
               50% {
-                transform: scale(1.1) rotate(5deg);
+                transform: translateY(-10px) scale(1.1) rotate(0deg);
+              }
+              75% {
+                transform: translateY(-15px) scale(1.05) rotate(-1deg);
+              }
+            }
+            
+            @keyframes gradientShift {
+              0%, 100% {
+                filter: hue-rotate(0deg) brightness(1);
+              }
+              50% {
+                filter: hue-rotate(15deg) brightness(1.1);
               }
             }
           `;
@@ -145,25 +154,19 @@
         
         testLogo.src = '/assets/icons/logo.png';
         
-        // Auto-hide loading when React mounts
         const observer = new MutationObserver(function(mutations) {
           mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length > 0) {
               const root = document.getElementById('root');
               if (root && root.children.length > 0) {
-                // React has mounted, hide loading
-                const hideStyle = document.createElement('style');
-                hideStyle.textContent = `
-                  #root {
-                    background: transparent !important;
-                    animation: none !important;
-                  }
-                  #root::before,
-                  #root::after {
-                    display: none !important;
-                  }
-                `;
-                document.head.appendChild(hideStyle);
+                const loadingScreen = document.querySelector('.sera-fullscreen-loader');
+                if (loadingScreen) {
+                  loadingScreen.style.opacity = '0';
+                  loadingScreen.style.transform = 'scale(1.1)';
+                  setTimeout(() => {
+                    loadingScreen.remove();
+                  }, 500);
+                }
                 observer.disconnect();
               }
             }
@@ -178,9 +181,7 @@
       })();
     </script>
     
-    <!-- Critical CSS for theme detection -->
     <script>
-      // Theme detection before page load
       (function() {
         const savedTheme = localStorage.getItem('sera-theme');
         const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -189,7 +190,6 @@
         document.documentElement.className = theme;
         document.documentElement.setAttribute('data-theme', theme);
         
-        // Update theme-color meta tag
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
           metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#16a34a');
@@ -197,20 +197,27 @@
       })();
     </script>
     
-    <!-- Critical CSS to prevent FOUC -->
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
       html {
         scroll-behavior: smooth;
+        font-size: 16px;
       }
       
       body {
         margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background-color: #ffffff;
         color: #171717;
         transition: background-color 0.3s ease, color 0.3s ease;
+        overflow: hidden;
       }
       
       .dark body {
@@ -218,57 +225,201 @@
         color: #fafafa;
       }
       
-      /* Enhanced Loading Screen */
-      #root:empty {
+      .sera-fullscreen-loader {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+        width: 100vw;
+        height: 100vh;
+        background: 
+          radial-gradient(circle at 15% 85%, rgba(22, 163, 74, 0.12) 0%, transparent 60%),
+          radial-gradient(circle at 85% 15%, rgba(74, 222, 128, 0.10) 0%, transparent 60%),
+          radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 70%),
+          linear-gradient(145deg, #fefefe 0%, #f8fafc 25%, #f1f5f9 50%, #e2e8f0 75%, #cbd5e1 100%);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         z-index: 9999;
+        overflow: hidden;
+        transition: opacity 0.5s ease, transform 0.5s ease;
       }
       
-      .dark #root:empty {
-        background: linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%);
+      .dark .sera-fullscreen-loader {
+        background: 
+          radial-gradient(circle at 15% 85%, rgba(34, 197, 94, 0.15) 0%, transparent 60%),
+          radial-gradient(circle at 85% 15%, rgba(134, 239, 172, 0.12) 0%, transparent 60%),
+          radial-gradient(circle at 50% 50%, rgba(74, 222, 128, 0.08) 0%, transparent 70%),
+          linear-gradient(145deg, #0a0a0a 0%, #111827 25%, #1f2937 50%, #374151 75%, #4b5563 100%);
       }
       
-      /* Logo - positioned relative to flex container */
-      #root:empty::before {
-        content: "";
+      .sera-bg-grid {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background-image: 
+          linear-gradient(rgba(22, 163, 74, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(22, 163, 74, 0.03) 1px, transparent 1px);
+        background-size: 80px 80px;
+        animation: gridMove 25s linear infinite;
+        z-index: 1;
+      }
+      
+      .dark .sera-bg-grid {
+        background-image: 
+          linear-gradient(rgba(134, 239, 172, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(134, 239, 172, 0.05) 1px, transparent 1px);
+      }
+      
+      @keyframes gridMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(80px, 80px);
+        }
+      }
+      
+      .sera-orb {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(45deg, rgba(34, 197, 94, 0.4), rgba(74, 222, 128, 0.2));
+        filter: blur(1px);
+        animation: orbFloat 8s ease-in-out infinite;
+      }
+      
+      .dark .sera-orb {
+        background: linear-gradient(45deg, rgba(134, 239, 172, 0.3), rgba(74, 222, 128, 0.15));
+      }
+      
+      .sera-orb:nth-child(1) {
+        width: 120px;
+        height: 120px;
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 12s;
+      }
+      
+      .sera-orb:nth-child(2) {
         width: 80px;
         height: 80px;
+        top: 70%;
+        right: 15%;
+        animation-delay: -4s;
+        animation-duration: 10s;
+      }
+      
+      .sera-orb:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: -8s;
+        animation-duration: 14s;
+      }
+      
+      .sera-orb:nth-child(4) {
+        width: 100px;
+        height: 100px;
+        top: 30%;
+        right: 30%;
+        animation-delay: -2s;
+        animation-duration: 16s;
+      }
+      
+      @keyframes orbFloat {
+        0%, 100% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(30px, -40px) scale(1.1);
+        }
+        50% {
+          transform: translate(-20px, -80px) scale(0.9);
+        }
+        75% {
+          transform: translate(-40px, -20px) scale(1.05);
+        }
+      }
+      
+      .sera-main-content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 32px;
+        text-align: center;
+      }
+      
+      .sera-logo-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 180px;
+        height: 180px;
+        background: 
+          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%),
+          linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        backdrop-filter: blur(20px);
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.1),
+          0 0 0 1px rgba(255, 255, 255, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        animation: logoMegaFloat 4s ease-in-out infinite;
+      }
+      
+      .dark .sera-logo-container {
+        background: 
+          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%),
+          linear-gradient(145deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 
+          0 8px 32px rgba(0, 0, 0, 0.3),
+          0 0 0 1px rgba(255, 255, 255, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+      
+      .sera-logo-container::before {
+        content: "";
+        width: 100px;
+        height: 100px;
         background-image: url('/assets/icons/logo.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        animation: logoSpin 2s ease-in-out infinite;
-        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-        display: block;
-        margin: 0 auto 24px auto;
+        filter: drop-shadow(0 4px 12px rgba(34, 197, 94, 0.3));
+        animation: logoSpin 6s ease-in-out infinite;
       }
       
-      /* Text - positioned relative to flex container */
-      #root:empty::after {
-        content: "Memuat SERA Indonesia 🇮🇩";
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #16a34a;
-        text-align: center;
-        animation: textPulse 2s ease-in-out infinite;
-        display: block;
-        margin: 0 auto;
+      .dark .sera-logo-container::before {
+        filter: drop-shadow(0 4px 12px rgba(134, 239, 172, 0.4));
       }
       
-      .dark #root:empty::after {
-        color: #86efac;
+      @keyframes logoMegaFloat {
+        0%, 100% {
+          transform: translateY(0px) scale(1);
+        }
+        25% {
+          transform: translateY(-20px) scale(1.05);
+        }
+        50% {
+          transform: translateY(-10px) scale(1.1);
+        }
+        75% {
+          transform: translateY(-15px) scale(1.05);
+        }
       }
       
-      /* Loading Animations */
       @keyframes logoSpin {
         0%, 100% {
           transform: rotate(0deg) scale(1);
@@ -278,128 +429,511 @@
         }
       }
       
-      @keyframes textPulse {
+      .sera-brand-text {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .sera-title {
+        font-size: 3.5rem;
+        font-weight: 900;
+        background: linear-gradient(135deg, #16a34a 0%, #22c55e 30%, #4ade80 60%, #86efac 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: 0.1em;
+        line-height: 1.1;
+        animation: titleShimmer 3s ease-in-out infinite;
+        text-shadow: 0 0 40px rgba(34, 197, 94, 0.3);
+      }
+      
+      .dark .sera-title {
+        background: linear-gradient(135deg, #86efac 0%, #4ade80 30%, #22c55e 60%, #16a34a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 40px rgba(134, 239, 172, 0.4);
+      }
+      
+      .sera-subtitle {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #6b7280;
+        letter-spacing: 0.05em;
+        opacity: 0.8;
+        animation: subtitleFade 2s ease-in-out infinite alternate;
+      }
+      
+      .dark .sera-subtitle {
+        color: #9ca3af;
+      }
+      
+      @keyframes titleShimmer {
+        0%, 100% {
+          transform: scale(1);
+          filter: brightness(1);
+        }
+        50% {
+          transform: scale(1.02);
+          filter: brightness(1.1);
+        }
+      }
+      
+      @keyframes subtitleFade {
+        0% {
+          opacity: 0.7;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      
+      .sera-loading-section {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+        max-width: 400px;
+      }
+      
+      .sera-loading-text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #374151;
+        text-align: center;
+        animation: loadingTextPulse 2s ease-in-out infinite;
+      }
+      
+      .dark .sera-loading-text {
+        color: #d1d5db;
+      }
+      
+      @keyframes loadingTextPulse {
         0%, 100% {
           opacity: 1;
           transform: translateY(0);
         }
         50% {
           opacity: 0.7;
-          transform: translateY(-4px);
+          transform: translateY(-2px);
         }
       }
       
-      /* Loading Dots - positioned below text */
-      #root:empty {
+      .sera-progress-wrapper {
         position: relative;
+        width: 100%;
+        height: 8px;
+        background: rgba(229, 231, 235, 0.3);
+        border-radius: 20px;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       
-      #root:empty::before {
+      .dark .sera-progress-wrapper {
+        background: rgba(55, 65, 81, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      .sera-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, 
+          #16a34a 0%, 
+          #22c55e 25%, 
+          #4ade80 50%, 
+          #86efac 75%, 
+          #bbf7d0 100%);
+        border-radius: 20px;
+        animation: progressWave 3s ease-in-out infinite;
+        box-shadow: 
+          0 0 20px rgba(34, 197, 94, 0.6),
+          0 0 40px rgba(34, 197, 94, 0.3);
         position: relative;
-        z-index: 2;
+        overflow: hidden;
       }
       
-      #root:empty::after {
-        position: relative;
-        z-index: 2;
+      .dark .sera-progress-bar {
+        background: linear-gradient(90deg, 
+          #86efac 0%, 
+          #4ade80 25%, 
+          #22c55e 50%, 
+          #16a34a 75%, 
+          #15803d 100%);
+        box-shadow: 
+          0 0 20px rgba(134, 239, 172, 0.6),
+          0 0 40px rgba(134, 239, 172, 0.3);
       }
       
-      /* Create loading dots container with absolute positioning */
-      #root:empty {
-        background-image: 
-          radial-gradient(circle, #16a34a 3px, transparent 3px),
-          radial-gradient(circle, #16a34a 3px, transparent 3px),
-          radial-gradient(circle, #16a34a 3px, transparent 3px);
-        background-size: 12px 12px;
-        background-position: 
-          calc(50% - 24px) calc(50% + 80px),
-          50% calc(50% + 80px),
-          calc(50% + 24px) calc(50% + 80px);
-        background-repeat: no-repeat;
-        animation: dotsAnimation 1.5s ease-in-out infinite;
+      .sera-progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+          transparent 0%, 
+          rgba(255, 255, 255, 0.4) 50%, 
+          transparent 100%);
+        animation: progressShine 2s ease-in-out infinite;
       }
       
-      .dark #root:empty {
-        background-image: 
-          radial-gradient(circle, #86efac 3px, transparent 3px),
-          radial-gradient(circle, #86efac 3px, transparent 3px),
-          radial-gradient(circle, #86efac 3px, transparent 3px),
-          linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%);
-        background-size: 
-          12px 12px,
-          12px 12px,
-          12px 12px,
-          100% 100%;
-        background-position: 
-          calc(50% - 24px) calc(50% + 80px),
-          50% calc(50% + 80px),
-          calc(50% + 24px) calc(50% + 80px),
-          0 0;
-        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-        animation: dotsAnimation 1.5s ease-in-out infinite;
-      }
-      
-      @keyframes dotsAnimation {
-        0%, 20% {
-          background-size: 
-            16px 16px, 10px 10px, 10px 10px,
-            100% 100%;
+      @keyframes progressWave {
+        0% {
+          width: 0%;
+          transform: translateX(-100%);
         }
-        33%, 53% {
-          background-size: 
-            10px 10px, 16px 16px, 10px 10px,
-            100% 100%;
-        }
-        66%, 86% {
-          background-size: 
-            10px 10px, 10px 10px, 16px 16px,
-            100% 100%;
+        50% {
+          width: 100%;
+          transform: translateX(-25%);
         }
         100% {
-          background-size: 
-            16px 16px, 10px 10px, 10px 10px,
-            100% 100%;
+          width: 100%;
+          transform: translateX(0%);
         }
       }
       
-      /* Responsive */
-      @media (max-width: 640px) {
-        #root:empty::before {
-          width: 64px;
-          height: 64px;
+      @keyframes progressShine {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+      
+      .sera-loading-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      
+      .sera-dot {
+        width: 12px;
+        height: 12px;
+        background: linear-gradient(45deg, #22c55e, #4ade80);
+        border-radius: 50%;
+        animation: dotBounce 1.5s ease-in-out infinite;
+        box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+      }
+      
+      .dark .sera-dot {
+        background: linear-gradient(45deg, #86efac, #4ade80);
+        box-shadow: 0 0 10px rgba(134, 239, 172, 0.5);
+      }
+      
+      .sera-dot:nth-child(1) { animation-delay: 0s; }
+      .sera-dot:nth-child(2) { animation-delay: 0.2s; }
+      .sera-dot:nth-child(3) { animation-delay: 0.4s; }
+      .sera-dot:nth-child(4) { animation-delay: 0.6s; }
+      .sera-dot:nth-child(5) { animation-delay: 0.8s; }
+      
+      @keyframes dotBounce {
+        0%, 100% {
+          transform: scale(1) translateY(0);
+        }
+        50% {
+          transform: scale(1.2) translateY(-8px);
+        }
+      }
+      
+      .sera-bottom-info {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        z-index: 10;
+      }
+      
+      .sera-version {
+        padding: 12px 24px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #6b7280;
+        animation: versionPulse 3s ease-in-out infinite;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      }
+      
+      .dark .sera-version {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #9ca3af;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      }
+      
+      .sera-tagline {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        font-weight: 400;
+        opacity: 0.8;
+      }
+      
+      .dark .sera-tagline {
+        color: #6b7280;
+      }
+      
+      @keyframes versionPulse {
+        0%, 100% {
+          opacity: 0.8;
+          transform: translateY(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(-2px);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        .sera-main-content {
+          gap: 32px;
+          padding: 0 24px;
         }
         
-        #root:empty::after {
+        .sera-logo-container {
+          width: 140px;
+          height: 140px;
+        }
+        
+        .sera-logo-container::before {
+          width: 80px;
+          height: 80px;
+        }
+        
+        .sera-title {
+          font-size: 2.5rem;
+        }
+        
+        .sera-subtitle {
+          font-size: 1.1rem;
+        }
+        
+        .sera-bottom-info {
+          bottom: 20px;
+        }
+        
+        .sera-version {
+          padding: 8px 16px;
+          font-size: 0.8rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .sera-title {
+          font-size: 2rem;
+          letter-spacing: 0.05em;
+        }
+        
+        .sera-subtitle {
           font-size: 1rem;
         }
         
-        #root:empty {
-          background-position: 
-            calc(50% - 20px) calc(50% + 60px),
-            50% calc(50% + 60px),
-            calc(50% + 20px) calc(50% + 60px);
+        .sera-logo-container {
+          width: 120px;
+          height: 120px;
         }
         
-        .dark #root:empty {
-          background-position: 
-            calc(50% - 20px) calc(50% + 60px),
-            50% calc(50% + 60px),
-            calc(50% + 20px) calc(50% + 60px),
-            0 0;
+        .sera-logo-container::before {
+          width: 70px;
+          height: 70px;
+        }
+        
+        .sera-main-content {
+          gap: 24px;
+          padding: 0 16px;
         }
       }
       
-      /* Auto hide when React loads */
-      #root:not(:empty) {
-        background: transparent !important;
-        animation: none !important;
+      @media (min-width: 1920px) {
+        .sera-title {
+          font-size: 4.5rem;
+        }
+        
+        .sera-logo-container {
+          width: 220px;
+          height: 220px;
+        }
+        
+        .sera-logo-container::before {
+          width: 120px;
+          height: 120px;
+        }
       }
       
-      #root:not(:empty)::before,
-      #root:not(:empty)::after {
-        display: none !important;
+      #root:not(:empty) ~ .sera-fullscreen-loader {
+        display: none;
+      }
+      
+      .sera-fullscreen-loader * {
+        transition: all 0.3s ease;
       }
     </style>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const root = document.getElementById('root');
+        
+        if (root && root.children.length === 0) {
+          
+          const loader = document.createElement('div');
+          loader.className = 'sera-fullscreen-loader';
+          
+          const bgGrid = document.createElement('div');
+          bgGrid.className = 'sera-bg-grid';
+          loader.appendChild(bgGrid);
+          
+          for (let i = 0; i < 4; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'sera-orb';
+            loader.appendChild(orb);
+          }
+          
+          const mainContent = document.createElement('div');
+          mainContent.className = 'sera-main-content';
+          
+          const logoContainer = document.createElement('div');
+          logoContainer.className = 'sera-logo-container';
+          mainContent.appendChild(logoContainer);
+          
+          const brandText = document.createElement('div');
+          brandText.className = 'sera-brand-text';
+          
+          const title = document.createElement('h1');
+          title.className = 'sera-title';
+          title.textContent = 'SERA';
+          
+          const subtitle = document.createElement('p');
+          subtitle.className = 'sera-subtitle';
+          subtitle.textContent = 'Semesta Ruang Alam Indonesia 🇮🇩';
+          
+          brandText.appendChild(title);
+          brandText.appendChild(subtitle);
+          mainContent.appendChild(brandText);
+          
+          const loadingSection = document.createElement('div');
+          loadingSection.className = 'sera-loading-section';
+          
+          const loadingText = document.createElement('div');
+          loadingText.className = 'sera-loading-text';
+          loadingText.textContent = 'Memuat Platform Lingkungan...';
+          
+          const progressWrapper = document.createElement('div');
+          progressWrapper.className = 'sera-progress-wrapper';
+          
+          const progressBar = document.createElement('div');
+          progressBar.className = 'sera-progress-bar';
+          
+          progressWrapper.appendChild(progressBar);
+          
+          const loadingDots = document.createElement('div');
+          loadingDots.className = 'sera-loading-dots';
+          
+          for (let i = 0; i < 5; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'sera-dot';
+            loadingDots.appendChild(dot);
+          }
+          
+          loadingSection.appendChild(loadingText);
+          loadingSection.appendChild(progressWrapper);
+          loadingSection.appendChild(loadingDots);
+          mainContent.appendChild(loadingSection);
+          
+          loader.appendChild(mainContent);
+          
+          const bottomInfo = document.createElement('div');
+          bottomInfo.className = 'sera-bottom-info';
+          
+          const version = document.createElement('div');
+          version.className = 'sera-version';
+          version.textContent = 'Platform Aksi Lingkungan 1.0';
+          
+          const tagline = document.createElement('div');
+          tagline.className = 'sera-tagline';
+          tagline.textContent = 'Melindungi Indonesia untuk Generasi Mendatang';
+          
+          bottomInfo.appendChild(version);
+          bottomInfo.appendChild(tagline);
+          loader.appendChild(bottomInfo);
+          
+          document.body.appendChild(loader);
+          
+          const loadingMessages = [
+            'Memuat Platform Lingkungan...',
+            'Menginisialisasi Sistem...',
+            'Menyiapkan Dashboard...',
+            'Mengaktifkan Fitur Konservasi...',
+            'Siap Melindungi Indonesia! 🌿'
+          ];
+          
+          let messageIndex = 0;
+          const messageInterval = setInterval(() => {
+            if (messageIndex < loadingMessages.length - 1) {
+              messageIndex++;
+              loadingText.textContent = loadingMessages[messageIndex];
+            } else {
+              clearInterval(messageInterval);
+            }
+          }, 800);
+          
+          const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+              if (mutation.addedNodes.length > 0) {
+                const hasReactContent = Array.from(root.children).some(child => 
+                  child.tagName && child.tagName !== 'SCRIPT'
+                );
+                
+                if (hasReactContent) {
+                  clearInterval(messageInterval);
+                  
+                  loader.style.opacity = '0';
+                  loader.style.transform = 'scale(1.05)';
+                  
+                  setTimeout(() => {
+                    if (loader.parentNode) {
+                      loader.remove();
+                    }
+                    document.body.style.overflow = 'auto';
+                  }, 500);
+                  
+                  observer.disconnect();
+                }
+              }
+            });
+          });
+          
+          observer.observe(root, { 
+            childList: true, 
+            subtree: true,
+            characterData: true
+          });
+          
+          setTimeout(() => {
+            if (loader.parentNode) {
+              clearInterval(messageInterval);
+              loader.style.opacity = '0';
+              setTimeout(() => {
+                if (loader.parentNode) {
+                  loader.remove();
+                }
+                document.body.style.overflow = 'auto';
+              }, 500);
+            }
+          }, 10000);
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
