@@ -111,7 +111,7 @@ cd sera-indonesia
 
 ```bash
 npm install
-atau
+# atau
 yarn install
 ```
 
@@ -119,7 +119,7 @@ yarn install
 
 ```bash
 npm run dev
-atau
+# atau
 yarn dev
 ```
 
