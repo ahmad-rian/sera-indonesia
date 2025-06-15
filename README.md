@@ -88,3 +88,41 @@ SERA menggunakan design system yang terinspirasi dari alam Indonesia:
 
 ---
 
+# 🔧 Instalasi & Setup
+
+## 📋 Prerequisites
+
+Pastikan kamu sudah menginstall:
+
+- [Node.js](https://nodejs.org/) (versi 16 atau lebih baru)
+- `npm` atau `yarn`
+- [Git](https://git-scm.com/)
+
+## 🚀 Quick Start
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/sera-indonesia.git
+cd sera-indonesia
+```
+
+### 2.Instal Dependencies
+
+```bash
+npm install
+atau
+yarn install
+```
+
+### Jalankan Project
+
+```bash
+npm run dev
+atau
+yarn dev
+```
+
+
+
+
