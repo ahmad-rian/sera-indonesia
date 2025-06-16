@@ -1,4 +1,3 @@
-
 .card-swap-container {
   position: relative;
   display: flex;
@@ -15,7 +14,7 @@
 
 .card {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -28,14 +27,13 @@
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   
-  /* Ensure proper stacking context */
   isolation: isolate;
   contain: layout style paint;
 }
 
 .dark .card {
-  background: rgb(30 41 59); /* slate-800 */
-  border-color: rgba(71, 85, 105, 0.2); /* slate-600 with opacity */
+  background: rgb(30 41 59);
+  border-color: rgba(71, 85, 105, 0.2);
 }
 
 .card:hover {
@@ -43,17 +41,19 @@
   transform: translateZ(10px);
 }
 
-/* Improve z-index management */
 .card:nth-child(1) { z-index: 100; }
 .card:nth-child(2) { z-index: 99; }
 .card:nth-child(3) { z-index: 98; }
 .card:nth-child(4) { z-index: 97; }
 
-/* Responsive adjustments with better scaling */
 @media (max-width: 1024px) {
   .card-swap-container {
     transform: scale(0.95);
     min-height: 380px;
+  }
+  
+  .card {
+    top: 58%;
   }
 }
 
@@ -62,12 +62,20 @@
     transform: scale(0.85);
     min-height: 340px;
   }
+  
+  .card {
+    top: 55%;
+  }
 }
 
 @media (max-width: 640px) {
   .card-swap-container {
     transform: scale(0.75);
     min-height: 300px;
+  }
+  
+  .card {
+    top: 52%;
   }
 }
 
@@ -76,9 +84,12 @@
     transform: scale(0.65);
     min-height: 260px;
   }
+  
+  .card {
+    top: 50%;
+  }
 }
 
-/* Ensure images don't overflow */
 .card img {
   object-fit: cover;
   width: 100%;

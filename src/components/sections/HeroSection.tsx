@@ -22,7 +22,6 @@ const HeroSection: React.FC = () => {
     };
   }, []);
 
- 
   const cardData = [
     {
       id: 1,
@@ -34,9 +33,7 @@ const HeroSection: React.FC = () => {
       description: "Kualitas udara Jakarta mencapai level tidak sehat dengan konsentrasi PM2.5 tinggi",
       indicator: "AQI 89 - Tidak Sehat untuk Sensitif",
       indicatorColor: "text-red-600 dark:text-red-400",
-      fallbackGradient: "from-gray-400 to-gray-600",
-      cardClass: "p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80",
-      imageHeight: "h-52"
+      fallbackGradient: "from-gray-400 to-gray-600"
     },
     {
       id: 2,
@@ -48,9 +45,7 @@ const HeroSection: React.FC = () => {
       description: "Kebakaran hutan dan lahan gambut yang meluas mengancam ekosistem dan kualitas udara",
       indicator: "156 Titik Api Terdeteksi Hari Ini",
       indicatorColor: "text-orange-600 dark:text-orange-400",
-      fallbackGradient: "from-orange-400 to-red-600",
-      cardClass: "p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80",
-      imageHeight: "h-52"
+      fallbackGradient: "from-orange-400 to-red-600"
     },
     {
       id: 3,
@@ -62,9 +57,7 @@ const HeroSection: React.FC = () => {
       description: "Pemutihan karang massal akibat pemanasan air laut mengancam biodiversitas laut",
       indicator: "45% Terumbu Karang Mengalami Pemutihan",
       indicatorColor: "text-blue-600 dark:text-blue-400",
-      fallbackGradient: "from-blue-400 to-teal-600",
-      cardClass: "p-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-80 h-96",
-      imageHeight: "h-40"
+      fallbackGradient: "from-blue-400 to-teal-600"
     },
     {
       id: 4,
@@ -76,9 +69,7 @@ const HeroSection: React.FC = () => {
       description: "Penggundulan hutan untuk perkebunan kelapa sawit dan pertambangan terus meningkat",
       indicator: "6.2 Juta Ha Hutan Hilang (2023)",
       indicatorColor: "text-green-600 dark:text-green-400",
-      fallbackGradient: "from-green-400 to-brown-600",
-      cardClass: "p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl w-72 h-80",
-      imageHeight: "h-52"
+      fallbackGradient: "from-green-400 to-brown-600"
     }
   ];
 
@@ -101,16 +92,16 @@ const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_800px_600px_at_50%_200px,black,transparent)]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         
-        <div className="min-h-[80vh] flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+        <div className="min-h-[70vh] sm:min-h-[80vh] flex flex-col lg:flex-row gap-8 sm:gap-12 lg:gap-16 items-center">
           
-          <div className="flex-1 w-full max-w-2xl space-y-8 text-center lg:text-left">
+          <div className="flex-1 w-full max-w-2xl space-y-6 sm:space-y-8 text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-8"
+              className="space-y-6 sm:space-y-8"
             >
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
@@ -140,7 +131,7 @@ const HeroSection: React.FC = () => {
                   className="mb-4"
                 >
                   <HyperText
-                    className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white text-center lg:text-left"
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white text-center lg:text-left"
                     duration={1200}
                     delay={800}
                     startOnView={false}
@@ -225,22 +216,36 @@ const HeroSection: React.FC = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="space-y-6"
+              className="relative"
             >
-              <div className="relative h-[400px] mt-4">
+              <div style={{ 
+                height: '500px', 
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingTop: '80px'
+              }}>
                 <CardSwap
                   width="100%"
                   height={400}
-                  cardDistance={20}
-                  verticalDistance={25}
+                  cardDistance={35}
+                  verticalDistance={45}
                   delay={4000}
                   pauseOnHover={true}
                   easing="linear"
                 >
                   {cardData.map((card) => (
-                    <Card key={card.id} customClass={card.cardClass}>
+                    <Card 
+                      key={card.id}
+                      customClass={
+                        card.id === 3 
+                          ? "p-8 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl"
+                          : "p-5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl"
+                      }
+                    >
                       <div className="mb-3">
-                        <div className={`w-full ${card.imageHeight} rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-3`}>
+                        <div className={`w-full ${card.id === 3 ? 'h-40' : 'h-52'} rounded-lg overflow-hidden bg-slate-100 dark:bg-slate-700 mb-3`}>
                           <img 
                             src={card.image}
                             alt={card.alt}

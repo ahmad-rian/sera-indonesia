@@ -1,16 +1,14 @@
-'use client'
-
 import React, {
   Children,
   cloneElement,
   forwardRef,
   isValidElement,
+  ReactElement,
+  ReactNode,
+  RefObject,
   useEffect,
   useMemo,
   useRef,
-  type ReactElement,
-  type ReactNode,
-  type RefObject,
 } from "react";
 import gsap from "gsap";
 import "../../styles/CardSwap.css";
@@ -111,10 +109,9 @@ const CardSwap: React.FC<CardSwapProps> = ({
     () => Children.toArray(children) as ReactElement<CardProps>[],
     [children]
   );
-  
   const refs = useMemo<CardRef[]>(
-    () => childArr.map(() => React.createRef<HTMLDivElement>() as RefObject<HTMLDivElement>),
-    [childArr]
+    () => childArr.map(() => React.createRef<HTMLDivElement>()),
+    [childArr.length]
   );
 
   const order = useRef<number[]>(
@@ -122,28 +119,24 @@ const CardSwap: React.FC<CardSwapProps> = ({
   );
 
   const tlRef = useRef<gsap.core.Timeline | null>(null);
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<number>();
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const total = refs.length;
-    refs.forEach((r, i) => {
-      if (r.current) {
-        placeNow(
-          r.current,
-          makeSlot(i, cardDistance, verticalDistance, total),
-          skewAmount
-        );
-      }
-    });
+    refs.forEach((r, i) =>
+      placeNow(
+        r.current!,
+        makeSlot(i, cardDistance, verticalDistance, total),
+        skewAmount
+      )
+    );
 
     const swap = () => {
       if (order.current.length < 2) return;
 
       const [front, ...rest] = order.current;
-      const elFront = refs[front].current;
-      if (!elFront) return;
-      
+      const elFront = refs[front].current!;
       const tl = gsap.timeline();
       tlRef.current = tl;
 
@@ -155,9 +148,7 @@ const CardSwap: React.FC<CardSwapProps> = ({
 
       tl.addLabel("promote", `-=${config.durDrop * config.promoteOverlap}`);
       rest.forEach((idx, i) => {
-        const el = refs[idx].current;
-        if (!el) return;
-        
+        const el = refs[idx].current!;
         const slot = makeSlot(i, cardDistance, verticalDistance, refs.length);
         tl.set(el, { zIndex: slot.zIndex }, "promote");
         tl.to(
@@ -206,13 +197,11 @@ const CardSwap: React.FC<CardSwapProps> = ({
     swap();
     intervalRef.current = window.setInterval(swap, delay);
 
-    if (pauseOnHover && container.current) {
-      const node = container.current;
+    if (pauseOnHover) {
+      const node = container.current!;
       const pause = () => {
         tlRef.current?.pause();
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
+        clearInterval(intervalRef.current);
       };
       const resume = () => {
         tlRef.current?.play();
@@ -223,17 +212,11 @@ const CardSwap: React.FC<CardSwapProps> = ({
       return () => {
         node.removeEventListener("mouseenter", pause);
         node.removeEventListener("mouseleave", resume);
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
+        clearInterval(intervalRef.current);
       };
     }
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, refs, config]);
+    return () => clearInterval(intervalRef.current);
+  }, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
 
   const rendered = childArr.map((child, i) =>
     isValidElement<CardProps>(child)
