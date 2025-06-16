@@ -4,7 +4,8 @@
 
 **Platform Aksi Lingkungan Digital Indonesia**
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-sera--indonesia.vercel.app-16a34a?style=for-the-badge)](https://sera-indonesia.vercel.app)
+🌐 Akses SERA-INDONESIA : https://sera-indonesia.vercel.app/
+
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![HeroUI](https://img.shields.io/badge/HeroUI-2.0-000000?style=for-the-badge)](https://heroui.com/)
@@ -86,4 +87,42 @@ SERA menggunakan design system yang terinspirasi dari alam Indonesia:
 - 🌙 **Dark Mode** - Tema gelap yang nyaman untuk mata
 
 ---
+
+# 🔧 Instalasi & Setup
+
+## 📋 Prerequisites
+
+Pastikan kamu sudah menginstall:
+
+- [Node.js](https://nodejs.org/) (versi 16 atau lebih baru)
+- `npm` atau `yarn`
+- [Git](https://git-scm.com/)
+
+## 🚀 Quick Start
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/sera-indonesia.git
+cd sera-indonesia
+```
+
+### 2.Instal Dependencies
+
+```bash
+npm install
+# atau
+yarn install
+```
+
+### Jalankan Project
+
+```bash
+npm run dev
+# atau
+yarn dev
+```
+
+
+
 
