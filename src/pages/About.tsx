@@ -29,8 +29,6 @@ const About = () => {
   const ctaRef = useRef<HTMLDivElement>(null)
 
 
-
-
   const features = [
     {
       icon: AlertTriangle,

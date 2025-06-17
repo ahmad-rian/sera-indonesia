@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-// Type for Lucide React icons
+
 export type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 export interface EmergencyAlert {

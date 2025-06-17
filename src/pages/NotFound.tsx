@@ -5,7 +5,7 @@ import { Home, Search, TreePine, ArrowLeft, Leaf, Globe } from 'lucide-react';
 const NotFound = () => {
   const location = useLocation();
   
-  // Set document title for 404 page
+
   useEffect(() => {
     document.title = '404 - Halaman Tidak Ditemukan | SERA Indonesia';
   }, []);
