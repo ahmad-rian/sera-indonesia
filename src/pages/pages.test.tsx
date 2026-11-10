@@ -11,6 +11,9 @@ import ReportPage from './report/ReportPage';
 import WasteBankPage from './waste-bank/WasteBankPage';
 import NotFound from './NotFound';
 
+/** Lazy chunks + query resolution can exceed the 1s default when workers run in parallel. */
+const ASYNC = { timeout: 5000 };
+
 const quake = {
   DateTime: new Date().toISOString(),
   Coordinates: '-7.08,130.07',
@@ -50,10 +53,10 @@ describe('HomePage', () => {
   it('renders hero and live tiles from upstream data', async () => {
     renderWithProviders(<HomePage />);
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Bersama jaga alam Indonesia tetap lestari');
-    expect(await screen.findByText(/AQI 160/)).toBeInTheDocument();
+    expect(await screen.findByText(/AQI 160/, undefined, ASYNC)).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: /Bank sampah: sampahmu bernilai/ })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Ubah sampah jadi tabungan/ })).toHaveAttribute('href', '/bank-sampah');
-    expect(await screen.findAllByText('M 5.5')).not.toHaveLength(0);
+    expect(await screen.findAllByText('M 5.5', undefined, ASYNC)).not.toHaveLength(0);
     expect(document.title).toContain('SERA Indonesia');
   });
 });
@@ -61,9 +64,9 @@ describe('HomePage', () => {
 describe('CrisisPage', () => {
   it('shows ranked city AQI, quake list and hotspot unavailable state', async () => {
     renderWithProviders(<CrisisPage />);
-    const air = await screen.findByText('Makassar');
+    const air = await screen.findByText('Makassar', undefined, ASYNC);
     expect(air).toBeInTheDocument();
-    expect(await screen.findByText(/Data titik panas sedang tidak tersedia/)).toBeInTheDocument();
+    expect(await screen.findByText(/Data titik panas sedang tidak tersedia/, undefined, ASYNC)).toBeInTheDocument();
     expect(screen.getAllByText('169 km BaratLaut TANIMBAR').length).toBeGreaterThan(0);
     expect(screen.getByRole('heading', { name: 'Polusi udara Jabodetabek' })).toBeInTheDocument();
     expect(document.title).toBe('Krisis & Data · SERA Indonesia');
@@ -124,7 +127,7 @@ describe('ReportPage', () => {
     await userEvent.type(screen.getByLabelText(/^Lokasi/), 'Bekasi');
     await userEvent.type(screen.getByLabelText(/Deskripsi/), 'Air sungai hitam pekat dan berbau sejak minggu lalu.');
     await userEvent.click(screen.getByRole('button', { name: /Kirim laporan/ }));
-    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Terima kasih!'));
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('Terima kasih!'), ASYNC);
     expect(hrefSetter).toHaveBeenCalledWith(expect.stringMatching(/^mailto:/));
   });
 });

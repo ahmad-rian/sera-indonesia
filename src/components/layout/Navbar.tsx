@@ -8,6 +8,7 @@ import { Button } from '../ui/Button';
 import { LangToggle } from '../ui/LangToggle';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { Logo } from './Logo';
+import { MobileMenu } from './MobileMenu';
 import { NAV_ITEMS } from './nav';
 
 export function Navbar() {
@@ -25,7 +26,8 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-40 bg-bg/80 backdrop-blur-md">
+    <>
+    <header className={cn('sticky top-0 z-50 transition-colors', open ? 'bg-bg' : 'bg-bg/80 backdrop-blur-md')}>
       <nav aria-label={t('nav.main')} className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <Logo />
 
@@ -63,39 +65,16 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={t(open ? 'nav.close' : 'nav.open')}
-            className="grid size-10 place-items-center rounded-full bg-ink text-bg lg:hidden"
+            className="relative grid size-10 place-items-center rounded-full bg-ink text-bg lg:hidden"
           >
-            {open ? <X aria-hidden className="size-5" /> : <Menu aria-hidden className="size-5" />}
+            <Menu aria-hidden className={cn('absolute size-5 transition-[opacity,rotate] duration-300', open ? 'rotate-90 opacity-0' : 'opacity-100')} />
+            <X aria-hidden className={cn('absolute size-5 transition-[opacity,rotate] duration-300', open ? 'opacity-100' : '-rotate-90 opacity-0')} />
           </button>
         </div>
       </nav>
 
-      {open && (
-        <div id="mobile-menu" className="border-t border-line bg-bg px-4 pb-6 pt-4 lg:hidden">
-          <ul className="flex flex-col gap-2">
-            {[...NAV_ITEMS, { to: ROUTES.report, labelKey: 'nav.report' }].map(({ to, labelKey }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  end={to === ROUTES.home}
-                  className={({ isActive }) =>
-                    cn(
-                      'flex h-14 items-center rounded-card px-5 text-lg font-semibold',
-                      isActive ? 'bg-sage text-forest' : 'bg-surface',
-                    )
-                  }
-                >
-                  {t(labelKey)}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-4 flex items-center gap-2 sm:hidden">
-            <LangToggle />
-            <ThemeToggle />
-          </div>
-        </div>
-      )}
     </header>
+    <MobileMenu open={open} />
+    </>
   );
 }

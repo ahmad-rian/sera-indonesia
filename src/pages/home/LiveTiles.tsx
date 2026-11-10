@@ -20,7 +20,7 @@ export function AirQualityTile() {
   const jakarta = result?.data.cities.find((c) => c.city === 'Jakarta');
 
   return (
-    <BentoCard className="flex min-h-36 flex-col items-center justify-center gap-1 text-center">
+    <BentoCard className="flex min-h-36 flex-col items-center justify-center gap-1 text-center lg:min-h-0">
       {!jakarta || !result ? (
         <TileSkeleton />
       ) : (
@@ -44,7 +44,7 @@ export function QuakeTile() {
   const quake = result?.data.latest;
 
   return (
-    <BentoCard tone="sage" className="flex min-h-36 flex-col items-center justify-center gap-1 text-center">
+    <BentoCard tone="sage" className="flex min-h-36 flex-col items-center justify-center gap-1 text-center lg:min-h-0">
       {!quake || !result ? (
         <TileSkeleton />
       ) : (

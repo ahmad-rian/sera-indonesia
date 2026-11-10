@@ -7,25 +7,29 @@ import { ROUTES } from '../../lib/constants';
 import { AirQualityTile, QuakeTile } from './LiveTiles';
 import { ObservanceTile } from './ObservanceTile';
 
+/**
+ * Staggered bento row. On desktop the row height follows the viewport height so the
+ * whole hero (headline + bento + marquee) fits one screen; card heights are fractions of it.
+ */
 export function HeroBento() {
   const { t } = useTranslation();
   return (
-    <section aria-label={t('home.bento.label')} className="mx-auto mt-12 max-w-7xl px-4 sm:px-6">
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-[1fr_1.15fr_1.3fr_1.15fr_1fr] lg:items-center">
+    <section aria-label={t('home.bento.label')} className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+      <div className="grid grid-cols-2 gap-4 lg:h-[clamp(17rem,42svh,27rem)] lg:grid-cols-[1fr_1.15fr_1.3fr_1.15fr_1fr] lg:items-center">
         {/* Decorative texture card */}
-        <BentoCard tone="sage" className="hidden aspect-[5/4] lg:grid lg:place-items-center">
+        <BentoCard tone="sage" className="hidden lg:grid lg:h-[58%] lg:place-items-center">
           <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,var(--c-surface)_0,transparent_55%)] opacity-60" />
           <img src="/icons/sera-mark.svg" alt="" width={72} height={72} className="relative size-18 drop-shadow-lg" />
         </BentoCard>
 
-        <div className="col-span-2 grid grid-cols-2 gap-4 lg:col-span-1 lg:grid-cols-1">
+        <div className="col-span-2 grid grid-cols-2 gap-4 lg:col-span-1 lg:h-[88%] lg:grid-cols-1 lg:grid-rows-2">
           <AirQualityTile />
           <QuakeTile />
         </div>
 
         <Link
           to={ROUTES.report}
-          className="group relative col-span-2 block aspect-[4/5] overflow-hidden rounded-hero sm:aspect-[16/10] lg:col-span-1 lg:aspect-[3/4]"
+          className="group relative col-span-2 block aspect-[4/5] overflow-hidden rounded-hero sm:aspect-[16/10] lg:col-span-1 lg:aspect-auto lg:h-full"
         >
           <img
             src="/assets/images/raja_ampat.webp"
@@ -43,7 +47,7 @@ export function HeroBento() {
 
         <Link
           to={ROUTES.wasteBank}
-          className="group relative block aspect-[4/5] overflow-hidden rounded-panel bg-sage-strong lg:aspect-[4/5]"
+          className="group relative block aspect-[4/5] overflow-hidden rounded-panel bg-sage-strong lg:aspect-auto lg:h-[80%]"
         >
           <div aria-hidden className="absolute inset-0 grid place-items-center">
             {[95, 70, 45].map((pct) => (
@@ -55,7 +59,7 @@ export function HeroBento() {
             <Pill tone="outline" className="border-ink/30 bg-transparent">
               {t('home.bento.tagWaste')}
             </Pill>
-            <Pill tone="outline" className="border-ink/30 bg-transparent">
+            <Pill tone="outline" className="hidden border-ink/30 bg-transparent xl:inline-flex">
               {t('home.bento.tagSave')}
             </Pill>
           </div>

@@ -16,9 +16,12 @@ export default function HomePage() {
 
   return (
     <>
-      <Hero />
-      <HeroBento />
-      <div className="mt-14">
+      {/* Hero fills exactly one screen below the 5rem navbar; marquee sits on the fold */}
+      <div className="flex min-h-[calc(100svh-5rem)] flex-col gap-10 lg:gap-[clamp(1.5rem,4svh,3rem)]">
+        <Hero />
+        <div className="flex flex-1 items-center">
+          <HeroBento />
+        </div>
         <Marquee items={ticker} />
       </div>
       <Mission />

@@ -11,7 +11,7 @@ export function ObservanceTile() {
   const [next] = useMemo(() => upcomingObservances(new Date(), 1), []);
 
   return (
-    <div className="relative flex aspect-[4/5] flex-col items-center justify-center overflow-hidden rounded-panel bg-sage p-5 text-center lg:aspect-square">
+    <div className="relative flex aspect-[4/5] flex-col items-center justify-center overflow-hidden rounded-panel bg-sage p-5 text-center lg:aspect-auto lg:h-[58%]">
       <div aria-hidden className="absolute inset-0 grid place-items-center">
         {[90, 70, 50].map((pct) => (
           <span key={pct} className="absolute rounded-full border border-forest/15" style={{ width: `${pct}%`, aspectRatio: '1' }} />
