@@ -21,3 +21,13 @@ export const AQI_TONE: Record<AqiLevel, string> = {
   veryUnhealthy: 'bg-purple-100 text-purple-900 dark:bg-purple-500/15 dark:text-purple-200',
   hazardous: 'bg-rose-200 text-rose-950 dark:bg-rose-500/25 dark:text-rose-100',
 };
+
+/** Solid bar colours per level, same hue order as the EPA scale. */
+export const AQI_BAR: Record<AqiLevel, string> = {
+  good: 'bg-forest',
+  moderate: 'bg-yellow-500',
+  sensitive: 'bg-orange-500',
+  unhealthy: 'bg-red-500',
+  veryUnhealthy: 'bg-purple-600',
+  hazardous: 'bg-rose-800',
+};

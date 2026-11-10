@@ -6,7 +6,9 @@ async function stubData(page: Page) {
     const url = route.request().url();
     if (url.includes('current=')) {
       return route.fulfill({
-        json: Array.from({ length: 6 }, (_, i) => ({ current: { time: 't', us_aqi: 120 + i * 10, pm2_5: 30 } })),
+        json: Array.from({ length: 14 }, (_, i) => ({
+          current: { time: 't', us_aqi: 120 + i * 5, pm2_5: 30, pm10: 40, nitrogen_dioxide: 20, ozone: 50, carbon_monoxide: 400, sulphur_dioxide: 4, uv_index: 6 },
+        })),
       });
     }
     return route.fulfill({ json: { hourly: { time: ['2026-11-08T00:00', '2026-11-09T00:00'], us_aqi: [150, 170] } } });
@@ -14,6 +16,16 @@ async function stubData(page: Page) {
   const quake = { DateTime: new Date().toISOString(), Coordinates: '1,127', Magnitude: '5.2', Kedalaman: '10 km', Wilayah: 'Laut Maluku' };
   await page.route('**/autogempa.json', (r) => r.fulfill({ json: { Infogempa: { gempa: quake } } }));
   await page.route('**/gempaterkini.json', (r) => r.fulfill({ json: { Infogempa: { gempa: [quake] } } }));
+  await page.route('**/gempadirasakan.json', (r) => r.fulfill({ json: { Infogempa: { gempa: [quake] } } }));
+  await page.route('**/api.open-meteo.com/**', (r) =>
+    r.fulfill({
+      json: Array.from({ length: 14 }, () => ({
+        current: { time: 't', temperature_2m: 31, apparent_temperature: 36, relative_humidity_2m: 70, precipitation: 0, weather_code: 3, wind_speed_10m: 8 },
+        daily: { time: ['2026-11-10', '2026-11-11'], temperature_2m_max: [33, 34], temperature_2m_min: [25, 25], precipitation_sum: [3, 8], uv_index_max: [9, 10] },
+      })),
+    }),
+  );
+  await page.route('**/api.worldbank.org/**', (r) => r.fulfill({ json: [{}, [{ date: '2000', value: 60 }, { date: '2024', value: 50.7 }]] }));
   await page.route('**/api/hotspots', (r) =>
     r.fulfill({ json: { data: { total: 42, highConfidence: 5, byRegion: [{ region: 'kalimantan', count: 30 }] }, asOf: new Date().toISOString(), source: 'NASA FIRMS' } }),
   );
@@ -104,4 +116,6 @@ test('krisis dashboard shows live hotspots and AQI chart', async ({ page }) => {
   await expect(hotspotTotal).toBeVisible();
   await expect(hotspotTotal).toContainText('42');
   await expect(page.locator('.recharts-surface').first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Cuaca & panas' })).toBeVisible();
+  await expect(page.getByText('Luas hutan (% daratan)')).toBeVisible();
 });

@@ -118,17 +118,28 @@
     "eyebrow": "Krisis & Data",
     "titleBefore": "Pantau kondisi lingkungan secara",
     "titleHighlight": "langsung",
-    "intro": "Kualitas udara, titik panas kebakaran, dan gempa bumi dari sumber resmi, diperbarui otomatis. Di bawahnya, krisis yang terus kami kawal.",
+    "intro": "Kualitas udara 14 kota, cuaca & panas ekstrem, gempa bumi, titik api, dan tren jangka panjang dari sumber resmi — diperbarui otomatis.",
     "data": {
       "eyebrow": "Dasbor",
       "title": "Angka hari ini",
       "intro": "Setiap kartu menunjukkan sumber dan waktu pembaruan. Bila sumber tidak dapat dijangkau, kami tampilkan data cadangan terakhir dengan tanda jelas."
     },
     "air": {
-      "title": "Kualitas udara kota",
-      "subtitle": "Indeks AQI (standar US EPA) dan PM2.5, per jam",
-      "trend": "Rata-rata AQI harian Jakarta, 7 hari terakhir",
-      "trendAria": "Grafik rata-rata AQI harian Jakarta: {{values}}"
+      "title": "Kualitas udara 14 kota",
+      "subtitle_one": "{{unhealthy}} dari {{count}} kota di atas AQI 100",
+      "subtitle_other": "{{unhealthy}} dari {{count}} kota di atas AQI 100 (kurang sehat)",
+      "ranking": "Peringkat kota berdasarkan AQI",
+      "trend": "Rata-rata AQI harian {{city}}, 7 hari terakhir",
+      "trendAria": "Grafik rata-rata AQI harian: {{values}}",
+      "guideline": "Pedoman WHO 24 jam: {{value}}",
+      "advice": {
+        "good": "Udara bersih. Aman untuk aktivitas luar ruang.",
+        "moderate": "Dapat diterima. Orang yang sangat sensitif sebaiknya mengurangi aktivitas berat di luar.",
+        "sensitive": "Anak, lansia, dan penderita asma sebaiknya membatasi aktivitas luar ruang.",
+        "unhealthy": "Semua orang sebaiknya mengurangi aktivitas luar dan memakai masker N95 bila keluar.",
+        "veryUnhealthy": "Hindari aktivitas luar ruang. Tutup jendela dan gunakan penyaring udara bila ada.",
+        "hazardous": "Kondisi darurat kesehatan. Tetap di dalam ruangan."
+      }
     },
     "fire": {
       "title": "Titik panas",
@@ -136,17 +147,79 @@
       "unavailable": "Data titik panas sedang tidak tersedia. Cek langsung di NASA FIRMS atau SiPongi KLHK.",
       "high_one": "{{count}} keyakinan tinggi",
       "high_other": "{{count}} keyakinan tinggi",
-      "approx": "Pembagian wilayah berdasarkan perkiraan koordinat pulau."
+      "approx": "Pembagian wilayah berdasarkan perkiraan koordinat pulau.",
+      "liveMaps": "Peta langsung",
+      "maps": {
+        "firms": "Titik api satelit 24 jam",
+        "sipongi": "Karhutla resmi KLHK",
+        "gfw": "Peringatan deforestasi"
+      }
     },
     "quake": {
       "title": "Gempa bumi",
-      "subtitle": "Dari BMKG",
-      "latest": "Terbaru"
+      "subtitle": "Data BMKG, diperbarui setiap ada kejadian",
+      "latest": "Terbaru",
+      "depth": "kedalaman {{km}} km",
+      "feltIn": "dirasakan {{where}}",
+      "statCount": "Gempa M5+",
+      "statMax": "Terkuat",
+      "statShallow": "Dangkal (<70 km)",
+      "tabs": {
+        "significant": "M5+ terkini",
+        "felt": "Dirasakan warga"
+      }
     },
     "list": {
       "eyebrow": "Krisis yang dikawal",
       "title": "Konteks di balik angka",
       "reviewed": "Ditinjau {{date}}"
+    },
+    "summary": {
+      "air": "Udara terburuk",
+      "heat": "Terpanas saat ini",
+      "quake": "Gempa terbaru",
+      "fire": "Titik panas 24 jam",
+      "feelsLike": "terasa seperti"
+    },
+    "weather": {
+      "title": "Cuaca & panas",
+      "subtitle": "Kondisi terkini dan prakiraan 7 hari per kota",
+      "hottest": "Terasa paling panas",
+      "wettest": "Hujan terbanyak 7 hari",
+      "cols": {
+        "city": "Kota",
+        "now": "Sekarang",
+        "feels": "Terasa",
+        "humidity": "Lembap",
+        "rain7": "Hujan 7 hari"
+      },
+      "forecast": "Prakiraan 7 hari · {{city}}",
+      "forecastAria": "Grafik prakiraan suhu maksimum, minimum, dan curah hujan 7 hari",
+      "series": {
+        "max": "Suhu maks",
+        "min": "Suhu min",
+        "rain": "Curah hujan"
+      },
+      "kind": {
+        "clear": "Cerah",
+        "cloudy": "Berawan",
+        "fog": "Berkabut",
+        "drizzle": "Gerimis",
+        "rain": "Hujan",
+        "storm": "Badai petir"
+      }
+    },
+    "trends": {
+      "eyebrow": "Tren jangka panjang",
+      "title": "Indonesia sejak tahun 2000",
+      "intro": "Indikator resmi tahunan dari World Bank. Persentase menunjukkan perubahan dari tahun pertama ke data terbaru.",
+      "items": {
+        "forest": "Luas hutan (% daratan)",
+        "pm25": "Paparan PM2.5 rata-rata tahunan",
+        "co2pc": "Emisi CO₂ per kapita",
+        "ghg": "Total emisi gas rumah kaca",
+        "renewable": "Porsi energi terbarukan"
+      }
     }
   },
   "action": {

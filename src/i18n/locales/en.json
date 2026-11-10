@@ -118,17 +118,28 @@
     "eyebrow": "Crisis & Data",
     "titleBefore": "Track the environment",
     "titleHighlight": "live",
-    "intro": "Air quality, fire hotspots and earthquakes from official sources, refreshed automatically. Below, the crises we keep watching.",
+    "intro": "Air quality in 14 cities, weather & extreme heat, earthquakes, fire hotspots and long-term trends from official sources — refreshed automatically.",
     "data": {
       "eyebrow": "Dashboard",
       "title": "Today's numbers",
       "intro": "Every card shows its source and update time. If a source is unreachable we show the last backup snapshot, clearly labelled."
     },
     "air": {
-      "title": "City air quality",
-      "subtitle": "AQI (US EPA scale) and PM2.5, hourly",
-      "trend": "Jakarta daily mean AQI, last 7 days",
-      "trendAria": "Chart of Jakarta daily mean AQI: {{values}}"
+      "title": "Air quality in 14 cities",
+      "subtitle_one": "{{unhealthy}} of {{count}} cities above AQI 100",
+      "subtitle_other": "{{unhealthy}} of {{count}} cities above AQI 100 (less healthy)",
+      "ranking": "Cities ranked by AQI",
+      "trend": "{{city}} daily mean AQI, last 7 days",
+      "trendAria": "Chart of daily mean AQI: {{values}}",
+      "guideline": "WHO 24h guideline: {{value}}",
+      "advice": {
+        "good": "Clean air. Safe for outdoor activity.",
+        "moderate": "Acceptable. Very sensitive people should limit heavy outdoor exertion.",
+        "sensitive": "Children, older adults and people with asthma should limit time outdoors.",
+        "unhealthy": "Everyone should cut outdoor activity and wear an N95 mask outside.",
+        "veryUnhealthy": "Avoid outdoor activity. Keep windows shut and use an air purifier if available.",
+        "hazardous": "Health emergency conditions. Stay indoors."
+      }
     },
     "fire": {
       "title": "Fire hotspots",
@@ -136,17 +147,79 @@
       "unavailable": "Hotspot data is unavailable right now. Check NASA FIRMS or SiPongi directly.",
       "high_one": "{{count}} high confidence",
       "high_other": "{{count}} high confidence",
-      "approx": "Regions are approximated from island coordinates."
+      "approx": "Regions are approximated from island coordinates.",
+      "liveMaps": "Live maps",
+      "maps": {
+        "firms": "24h satellite fire detections",
+        "sipongi": "Official KLHK fire reports",
+        "gfw": "Deforestation alerts"
+      }
     },
     "quake": {
       "title": "Earthquakes",
-      "subtitle": "From BMKG",
-      "latest": "Latest"
+      "subtitle": "BMKG data, updated with every event",
+      "latest": "Latest",
+      "depth": "{{km}} km deep",
+      "feltIn": "felt in {{where}}",
+      "statCount": "M5+ quakes",
+      "statMax": "Strongest",
+      "statShallow": "Shallow (<70 km)",
+      "tabs": {
+        "significant": "Recent M5+",
+        "felt": "Felt by residents"
+      }
     },
     "list": {
       "eyebrow": "Crises we follow",
       "title": "The context behind the numbers",
       "reviewed": "Reviewed {{date}}"
+    },
+    "summary": {
+      "air": "Worst air",
+      "heat": "Hottest right now",
+      "quake": "Latest quake",
+      "fire": "24h fire hotspots",
+      "feelsLike": "feels like"
+    },
+    "weather": {
+      "title": "Weather & heat",
+      "subtitle": "Current conditions and 7-day forecast per city",
+      "hottest": "Feels hottest",
+      "wettest": "Most rain in 7 days",
+      "cols": {
+        "city": "City",
+        "now": "Now",
+        "feels": "Feels",
+        "humidity": "Humidity",
+        "rain7": "7-day rain"
+      },
+      "forecast": "7-day forecast · {{city}}",
+      "forecastAria": "Chart of 7-day maximum and minimum temperature and rainfall",
+      "series": {
+        "max": "Max temp",
+        "min": "Min temp",
+        "rain": "Rainfall"
+      },
+      "kind": {
+        "clear": "Clear",
+        "cloudy": "Cloudy",
+        "fog": "Fog",
+        "drizzle": "Drizzle",
+        "rain": "Rain",
+        "storm": "Thunderstorm"
+      }
+    },
+    "trends": {
+      "eyebrow": "Long-term trends",
+      "title": "Indonesia since 2000",
+      "intro": "Official annual indicators from the World Bank. Percentages show the change from the first year to the latest data.",
+      "items": {
+        "forest": "Forest area (% of land)",
+        "pm25": "Mean annual PM2.5 exposure",
+        "co2pc": "CO₂ emissions per capita",
+        "ghg": "Total greenhouse gas emissions",
+        "renewable": "Renewable energy share"
+      }
     }
   },
   "action": {

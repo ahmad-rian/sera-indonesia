@@ -1,11 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { Flame } from 'lucide-react';
+import { ExternalLink, Flame } from 'lucide-react';
 import { BentoCard } from '../../components/ui/BentoCard';
 import { DataMeta } from '../../components/ui/DataMeta';
 import { IconBadge } from '../../components/ui/IconBadge';
 import { Skeleton } from '../../components/ui/Skeleton';
 import { useHotspots } from '../../features/data/hooks';
 import { formatNumber } from '../../lib/utils';
+
+const FIRE_MAPS = [
+  { key: 'firms', name: 'NASA FIRMS Fire Map', url: 'https://firms.modaps.eosdis.nasa.gov/map/#d:24hrs;@117.0,-2.5,5.0z' },
+  { key: 'sipongi', name: 'SiPongi KLHK', url: 'https://sipongi.menlhk.go.id/' },
+  { key: 'gfw', name: 'Global Forest Watch', url: 'https://www.globalforestwatch.org/map/country/IDN/' },
+] as const;
 
 export function HotspotPanel() {
   const { t, i18n } = useTranslation();
@@ -49,6 +55,25 @@ export function HotspotPanel() {
           <p className="text-xs text-ink/60">{t('crisis.fire.approx')}</p>
         </>
       )}
+
+      <div className="mt-auto flex flex-col gap-2">
+        <p className="text-xs font-semibold uppercase tracking-wide text-ink/60">{t('crisis.fire.liveMaps')}</p>
+        {FIRE_MAPS.map((m) => (
+          <a
+            key={m.url}
+            href={m.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-between gap-3 rounded-2xl bg-surface/70 px-4 py-3 text-sm font-semibold transition-colors hover:bg-surface"
+          >
+            <span>
+              {m.name}
+              <span className="block text-xs font-normal text-ink/60">{t(`crisis.fire.maps.${m.key}`)}</span>
+            </span>
+            <ExternalLink aria-hidden className="size-4 shrink-0" />
+          </a>
+        ))}
+      </div>
 
       {result && <DataMeta source={result.source} asOf={result.asOf} isFallback={result.isFallback} />}
     </BentoCard>

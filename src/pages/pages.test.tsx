@@ -2,7 +2,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Route, Routes } from 'react-router-dom';
 import { renderWithProviders } from '../test/render';
-import { AQ_CITIES } from '../features/data/airQuality';
+import { CITIES } from '../features/data/cities';
 import HomePage from './home/HomePage';
 import CrisisPage from './crisis/CrisisPage';
 import ActionPage from './action/ActionPage';
@@ -29,12 +29,25 @@ function stubUpstreams() {
     vi.fn(async (input: RequestInfo | URL) => {
       const url = String(input);
       const ok = (body: unknown) => ({ ok: true, status: 200, json: async () => body }) as Response;
-      if (url.includes('current=')) {
-        return ok(AQ_CITIES.map((_, i) => ({ current: { time: 't', us_aqi: 160 + i, pm2_5: 40 } })));
+      if (url.includes('air-quality') && url.includes('current=')) {
+        return ok(
+          CITIES.map((_, i) => ({
+            current: { time: 't', us_aqi: 160 + i, pm2_5: 40, pm10: 50, nitrogen_dioxide: 30, ozone: 40, carbon_monoxide: 500, sulphur_dioxide: 5, uv_index: 7 },
+          })),
+        );
       }
       if (url.includes('hourly=')) return ok({ hourly: { time: ['2026-11-09T00:00'], us_aqi: [170] } });
+      if (url.includes('api.open-meteo.com')) {
+        return ok(
+          CITIES.map((_, i) => ({
+            current: { time: 't', temperature_2m: 30, apparent_temperature: 33 + i, relative_humidity_2m: 75, precipitation: 0, weather_code: 61, wind_speed_10m: 9 },
+            daily: { time: ['2026-11-10'], temperature_2m_max: [33], temperature_2m_min: [25], precipitation_sum: [i], uv_index_max: [10] },
+          })),
+        );
+      }
+      if (url.includes('worldbank')) return ok([{}, [{ date: '2000', value: 60 }, { date: '2024', value: 50.7 }]]);
       if (url.endsWith('autogempa.json')) return ok({ Infogempa: { gempa: quake } });
-      if (url.endsWith('gempaterkini.json')) return ok({ Infogempa: { gempa: [quake] } });
+      if (url.endsWith('gempaterkini.json') || url.endsWith('gempadirasakan.json')) return ok({ Infogempa: { gempa: [quake] } });
       return { ok: false, status: 503, json: async () => ({}) } as Response;
     }),
   );
@@ -62,10 +75,14 @@ describe('HomePage', () => {
 });
 
 describe('CrisisPage', () => {
-  it('shows ranked city AQI, quake list and hotspot unavailable state', async () => {
+  it('shows ranked city AQI, weather, quakes, trends and hotspot unavailable state', async () => {
     renderWithProviders(<CrisisPage />);
-    const air = await screen.findByText('Makassar', undefined, ASYNC);
-    expect(air).toBeInTheDocument();
+    expect(await screen.findByRole('button', { name: /Jayapura/ }, ASYNC)).toBeInTheDocument();
+    expect(await screen.findByText('Pedoman WHO 24 jam: 15', undefined, ASYNC)).toBeInTheDocument();
+    expect(await screen.findByText('Jayapura · 46°C', undefined, ASYNC)).toBeInTheDocument();
+    expect(await screen.findByText('Luas hutan (% daratan)', undefined, ASYNC)).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('tab', { name: 'Dirasakan warga' }));
+    expect(screen.getByRole('tab', { name: 'Dirasakan warga' })).toHaveAttribute('aria-selected', 'true');
     expect(await screen.findByText(/Data titik panas sedang tidak tersedia/, undefined, ASYNC)).toBeInTheDocument();
     expect(screen.getAllByText('169 km BaratLaut TANIMBAR').length).toBeGreaterThan(0);
     expect(screen.getByRole('heading', { name: 'Polusi udara Jabodetabek' })).toBeInTheDocument();

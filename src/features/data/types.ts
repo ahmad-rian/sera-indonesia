@@ -8,16 +8,46 @@ export interface DataResult<T> {
   error?: string;
 }
 
+export interface DailyPoint {
+  date: string;
+  value: number;
+}
+
+/** Pollutant concentrations in µg/m³ (CO included); null when the model has no value. */
 export interface CityAirQuality {
   city: string;
   aqi: number;
   pm25: number;
+  pm10: number | null;
+  no2: number | null;
+  o3: number | null;
+  co: number | null;
+  so2: number | null;
+  uv: number | null;
 }
 
 export interface AirQualitySnapshot {
   cities: CityAirQuality[];
-  /** Daily mean AQI for Jakarta, oldest first. */
-  trend: { date: string; aqi: number }[];
+}
+
+export interface CityWeather {
+  city: string;
+  temp: number;
+  feelsLike: number | null;
+  humidity: number | null;
+  precipitation: number | null;
+  weatherCode: number | null;
+  wind: number | null;
+  daily: { date: string; max: number | null; min: number | null; rain: number | null; uv: number | null }[];
+}
+
+export type IndicatorKey = 'forest' | 'pm25' | 'co2pc' | 'ghg' | 'renewable';
+
+export interface Indicator {
+  key: IndicatorKey;
+  unit: string;
+  goodWhen: 'up' | 'down';
+  series: { year: number; value: number }[];
 }
 
 export interface Earthquake {

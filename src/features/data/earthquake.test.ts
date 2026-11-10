@@ -31,23 +31,29 @@ describe('parseQuake', () => {
 });
 
 describe('loadEarthquakes', () => {
-  it('returns latest + capped list of significant quakes', async () => {
-    const list = Array.from({ length: 15 }, (_, i) => ({ ...raw, DateTime: `2026-11-0${(i % 9) + 1}T00:00:00Z`, Magnitude: '5.1' }));
+  it('returns latest + capped significant and felt lists', async () => {
+    const list = Array.from({ length: 20 }, (_, i) => ({ ...raw, DateTime: `2026-11-0${(i % 9) + 1}T00:00:00Z`, Magnitude: '5.1' }));
     vi.stubGlobal(
       'fetch',
-      mockFetchSequence([{ body: { Infogempa: { gempa: raw } } }, { body: { Infogempa: { gempa: list } } }]),
+      mockFetchSequence([
+        { body: { Infogempa: { gempa: raw } } },
+        { body: { Infogempa: { gempa: list } } },
+        { body: { Infogempa: { gempa: list.slice(0, 3) } } },
+      ]),
     );
     const res = await loadEarthquakes();
     expect(res.isFallback).toBe(false);
     expect(res.data.latest.magnitude).toBe(2.5);
     expect(res.data.significant).toHaveLength(RECENT_QUAKE_LIMIT);
+    expect(res.data.feltReports).toHaveLength(3);
     expect(res.asOf).toBe(raw.DateTime);
   });
 
   it('falls back on upstream error', async () => {
-    vi.stubGlobal('fetch', mockFetchSequence([{ ok: false, status: 500, body: {} }, { body: {} }]));
+    vi.stubGlobal('fetch', mockFetchSequence([{ ok: false, status: 500, body: {} }, { body: {} }, { body: {} }]));
     const res = await loadEarthquakes();
     expect(res.isFallback).toBe(true);
     expect(res.data.latest).toBeDefined();
+    expect(res.data.feltReports.length).toBeGreaterThan(0);
   });
 });
