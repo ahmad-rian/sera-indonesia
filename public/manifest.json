@@ -1,21 +1,15 @@
 {
-  "name": "Sera Indonesia",
-  "short_name": "Sera",
-  "description": "Air Quality Monitoring Indonesia",
+  "name": "SERA Indonesia — Semesta Ruang Alam",
+  "short_name": "SERA",
+  "description": "Data lingkungan Indonesia secara langsung dan cara nyata untuk bertindak.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#f5f6f1",
+  "theme_color": "#1e4d3a",
+  "lang": "id",
   "icons": [
-    {
-      "src": "/assets/icons/logo.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/assets/icons/logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/sera-mark.svg", "sizes": "any", "type": "image/svg+xml" }
   ]
 }

@@ -1,45 +1,81 @@
-import React from 'react';
-import { motion, type HTMLMotionProps } from 'framer-motion';
+import type { ComponentPropsWithoutRef, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
-interface ButtonProps extends Omit<HTMLMotionProps<"button">, "children"> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  children: React.ReactNode;
-}
+type Variant = 'dark' | 'sage' | 'ghost' | 'outline';
+type Size = 'md' | 'lg';
 
-const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
-  size = 'md',
-  className,
-  children,
-  ...props
-}) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2';
-  
-  const variants = {
-    primary: 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700 focus:ring-emerald-500 shadow-sera hover:shadow-glow',
-    secondary: 'bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 focus:ring-slate-500',
-    outline: 'border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white focus:ring-emerald-500',
-    ghost: 'text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 focus:ring-emerald-500'
-  };
-
-  const sizes = {
-    sm: 'px-3 py-2 text-sm',
-    md: 'px-4 py-2.5 text-sm',
-    lg: 'px-6 py-3 text-base'
-  };
-
-  return (
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className={cn(baseClasses, variants[variant], sizes[size], className)}
-      {...props}
-    >
-      {children}
-    </motion.button>
-  );
+const VARIANT: Record<Variant, string> = {
+  dark: 'bg-ink text-bg hover:bg-forest hover:text-forest-ink',
+  sage: 'bg-sage text-ink hover:bg-sage-strong',
+  ghost: 'text-ink hover:bg-surface-2',
+  outline: 'border border-ink/15 text-ink hover:border-ink/40 hover:bg-surface',
 };
 
-export default Button;
+const SIZE: Record<Size, string> = {
+  md: 'h-11 px-5 text-sm',
+  lg: 'h-13 px-7 text-base',
+};
+
+interface BaseProps {
+  variant?: Variant;
+  size?: Size;
+  arrow?: boolean;
+  className?: string;
+  children: ReactNode;
+}
+
+type ButtonProps = BaseProps &
+  (
+    | ({ to: string; href?: never } & Omit<ComponentPropsWithoutRef<typeof Link>, 'to' | 'className' | 'children'>)
+    | ({ href: string; to?: never } & Omit<ComponentPropsWithoutRef<'a'>, 'href' | 'className' | 'children'>)
+    | ({ to?: never; href?: never } & Omit<ComponentPropsWithoutRef<'button'>, 'className' | 'children'>)
+  );
+
+function buttonClass(variant: Variant = 'dark', size: Size = 'md', className?: string) {
+  return cn(
+    'group inline-flex items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap',
+    'transition-[background-color,color,border-color,transform] duration-200 active:scale-[0.97]',
+    'disabled:pointer-events-none disabled:opacity-50',
+    VARIANT[variant],
+    SIZE[size],
+    className,
+  );
+}
+
+export function Button({ variant, size, arrow, className, children, ...rest }: ButtonProps) {
+  const content = (
+    <>
+      {children}
+      {arrow && (
+        <ArrowUpRight
+          aria-hidden
+          className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        />
+      )}
+    </>
+  );
+  const cls = buttonClass(variant, size, className);
+
+  if ('to' in rest && rest.to !== undefined) {
+    return (
+      <Link {...rest} className={cls}>
+        {content}
+      </Link>
+    );
+  }
+  if ('href' in rest && rest.href !== undefined) {
+    const external = /^https?:/.test(rest.href);
+    return (
+      <a {...rest} className={cls} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+        {content}
+      </a>
+    );
+  }
+  return (
+    <button type="button" {...(rest as ComponentPropsWithoutRef<'button'>)} className={cls}>
+      {content}
+    </button>
+  );
+}

@@ -1,0 +1,365 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "crisis": "Krisis & Data",
+    "action": "Aksi",
+    "about": "Tentang",
+    "report": "Lapor",
+    "main": "Navigasi utama",
+    "open": "Buka menu",
+    "close": "Tutup menu",
+    "language": "Bahasa",
+    "darkMode": "Mode gelap",
+    "lightMode": "Mode terang",
+    "skip": "Langsung ke konten",
+    "wasteBank": "Bank Sampah"
+  },
+  "footer": {
+    "tagline": "Semesta Ruang Alam — platform terbuka untuk memantau, memahami, dan bertindak bagi lingkungan Indonesia.",
+    "explore": "Jelajahi",
+    "sources": "Sumber data",
+    "follow": "Ikuti",
+    "rights": "Kode terbuka di GitHub",
+    "disclaimer": "Data dari sumber pihak ketiga dan dapat berubah. Untuk keadaan darurat hubungi 112."
+  },
+  "data": {
+    "live": "Langsung",
+    "liveShort": "Langsung",
+    "snapshot": "Data cadangan",
+    "fallback": "Data cadangan per {{date}}",
+    "source": "Sumber",
+    "unavailable": "Data belum tersedia"
+  },
+  "aqi": {
+    "good": "Baik",
+    "moderate": "Sedang",
+    "sensitive": "Tidak sehat bagi kelompok sensitif",
+    "unhealthy": "Tidak sehat",
+    "veryUnhealthy": "Sangat tidak sehat",
+    "hazardous": "Berbahaya"
+  },
+  "severity": {
+    "critical": "Kritis",
+    "high": "Tinggi",
+    "watch": "Dipantau"
+  },
+  "region": {
+    "sumatra": "Sumatra",
+    "kalimantan": "Kalimantan",
+    "java": "Jawa",
+    "sulawesi": "Sulawesi",
+    "nusa-tenggara": "Nusa Tenggara",
+    "maluku": "Maluku",
+    "papua": "Papua"
+  },
+  "home": {
+    "hero": {
+      "before": "Bersama jaga",
+      "highlight": "alam",
+      "after": "Indonesia tetap lestari",
+      "intro": "SERA menggerakkan bank sampah warga dan membuka data lingkungan, agar setiap orang bisa ikut beraksi.",
+      "ctaPrimary": "Lihat data hari ini",
+      "ctaSecondary": "Laporkan kejadian"
+    },
+    "marquee": [
+      "Pilah sampah dari rumah",
+      "Bank sampah",
+      "Lindungi Indonesia",
+      "Udara bersih",
+      "Hutan lestari",
+      "Data terbuka"
+    ],
+    "bento": {
+      "label": "Sorotan hari ini",
+      "imageAlt": "Gugusan pulau karst Raja Ampat dari ketinggian",
+      "share": "Bagikan laporanmu",
+      "quake": "Gempa terkini",
+      "today": "Hari ini",
+      "daysAway_one": "{{count}} hari lagi",
+      "daysAway_other": "{{count}} hari lagi",
+      "tagWaste": "Bank sampah",
+      "tagSave": "Menabung",
+      "wasteBank": "Ubah sampah jadi tabungan"
+    },
+    "mission": {
+      "lead": "Data lingkungan Indonesia tersebar di banyak lembaga. SERA merangkumnya di satu tempat, lengkap dengan sumber dan waktu pembaruan.",
+      "title": "Kami membuat krisis lingkungan terlihat, agar lebih banyak orang bisa bertindak.",
+      "about": "Tentang kami",
+      "action": "Lihat cara beraksi"
+    },
+    "live": {
+      "eyebrow": "Data langsung",
+      "title": "Kondisi lingkungan Indonesia saat ini",
+      "cta": "Buka dasbor",
+      "worstAir": "Kualitas udara terburuk",
+      "hotspots": "Titik panas 24 jam",
+      "hotspotsCaption": "Deteksi satelit VIIRS di seluruh Indonesia",
+      "quakes": "Gempa M5+ terkini",
+      "quakesCaption": "Terkuat M {{max}} · daftar BMKG"
+    },
+    "crises": {
+      "eyebrow": "Krisis utama",
+      "title": "Isu yang sedang kami pantau"
+    },
+    "cta": {
+      "title": "Melihat perusakan lingkungan di sekitarmu?",
+      "body": "Laporan warga membantu jurnalis, peneliti, dan pemerintah bergerak lebih cepat. Butuh kurang dari 3 menit.",
+      "report": "Buat laporan"
+    },
+    "wasteBank": {
+      "eyebrow": "Program unggulan",
+      "title": "Bank sampah: sampahmu bernilai, lingkungan terjaga",
+      "body": "Setiap kilogram yang dipilah dan disetor berarti lebih sedikit sampah ke TPA dan sungai, sekaligus tambahan tabungan bagi keluarga.",
+      "cta": "Kenali bank sampah",
+      "prices": "Lihat daftar harga"
+    }
+  },
+  "crisis": {
+    "eyebrow": "Krisis & Data",
+    "titleBefore": "Pantau kondisi lingkungan secara",
+    "titleHighlight": "langsung",
+    "intro": "Kualitas udara, titik panas kebakaran, dan gempa bumi dari sumber resmi, diperbarui otomatis. Di bawahnya, krisis yang terus kami kawal.",
+    "data": {
+      "eyebrow": "Dasbor",
+      "title": "Angka hari ini",
+      "intro": "Setiap kartu menunjukkan sumber dan waktu pembaruan. Bila sumber tidak dapat dijangkau, kami tampilkan data cadangan terakhir dengan tanda jelas."
+    },
+    "air": {
+      "title": "Kualitas udara kota",
+      "subtitle": "Indeks AQI (standar US EPA) dan PM2.5, per jam",
+      "trend": "Rata-rata AQI harian Jakarta, 7 hari terakhir",
+      "trendAria": "Grafik rata-rata AQI harian Jakarta: {{values}}"
+    },
+    "fire": {
+      "title": "Titik panas",
+      "subtitle": "Deteksi satelit 24 jam terakhir",
+      "unavailable": "Data titik panas sedang tidak tersedia. Cek langsung di NASA FIRMS atau SiPongi KLHK.",
+      "high_one": "{{count}} keyakinan tinggi",
+      "high_other": "{{count}} keyakinan tinggi",
+      "approx": "Pembagian wilayah berdasarkan perkiraan koordinat pulau."
+    },
+    "quake": {
+      "title": "Gempa bumi",
+      "subtitle": "Dari BMKG",
+      "latest": "Terbaru"
+    },
+    "list": {
+      "eyebrow": "Krisis yang dikawal",
+      "title": "Konteks di balik angka",
+      "reviewed": "Ditinjau {{date}}"
+    }
+  },
+  "action": {
+    "eyebrow": "Aksi",
+    "titleBefore": "Langkah kecil,",
+    "titleHighlight": "dampak",
+    "intro": "Pilih cara yang paling sesuai untukmu, dari melapor hingga ikut berkontribusi ke platform ini.",
+    "waysLabel": "Cara beraksi",
+    "agenda": {
+      "eyebrow": "Agenda",
+      "title": "Hari lingkungan terdekat",
+      "intro": "Momentum tahunan untuk bergerak bersama komunitas di kotamu."
+    },
+    "community": {
+      "title": "Bergabung dengan komunitas SERA",
+      "body": "Ikuti kabar terbaru, bantu verifikasi laporan, atau kontribusi kode dan terjemahan. SERA dibangun terbuka."
+    }
+  },
+  "report": {
+    "eyebrow": "Lapor",
+    "titleBefore": "Laporkan perusakan",
+    "titleHighlight": "lingkungan",
+    "intro": "Pencemaran, pembalakan, pembakaran lahan, atau perdagangan satwa. Laporanmu diteruskan ke tim kami untuk diverifikasi.",
+    "tipsLabel": "Tips melapor",
+    "tips": {
+      "location": {
+        "title": "Lokasi spesifik",
+        "body": "Sebut desa/kecamatan atau tempel koordinat dari peta."
+      },
+      "time": {
+        "title": "Kapan terjadi",
+        "body": "Tanggal dan waktu membantu mencocokkan dengan data satelit."
+      },
+      "safety": {
+        "title": "Utamakan keselamatan",
+        "body": "Jangan mendekati lokasi berbahaya. Kontak tidak wajib diisi."
+      }
+    },
+    "emergency": "Untuk kebakaran atau bencana yang sedang terjadi, hubungi 112 terlebih dahulu.",
+    "required": "Kolom bertanda * wajib diisi.",
+    "fields": {
+      "title": "Judul laporan",
+      "category": "Kategori",
+      "date": "Tanggal kejadian",
+      "location": "Lokasi",
+      "description": "Deskripsi",
+      "email": "Email (opsional)"
+    },
+    "placeholders": {
+      "title": "Contoh: Limbah cair dibuang ke Sungai Citarum",
+      "category": "Pilih kategori",
+      "location": "Desa, kecamatan, kabupaten atau koordinat",
+      "description": "Apa yang kamu lihat? Sejak kapan? Siapa yang terdampak?"
+    },
+    "hints": {
+      "email": "Hanya dipakai bila tim perlu konfirmasi. Tidak dipublikasikan."
+    },
+    "categories": {
+      "air": "Pencemaran udara",
+      "water": "Pencemaran air",
+      "waste": "Pembuangan sampah/limbah ilegal",
+      "deforestation": "Pembalakan/deforestasi",
+      "fire": "Pembakaran lahan",
+      "mining": "Tambang ilegal",
+      "wildlife": "Perdagangan satwa liar",
+      "other": "Lainnya"
+    },
+    "errors": {
+      "titleShort": "Judul minimal 8 karakter.",
+      "titleLong": "Judul maksimal 120 karakter.",
+      "category": "Pilih salah satu kategori.",
+      "location": "Lokasi minimal 3 karakter.",
+      "date": "Tanggal tidak valid.",
+      "dateFuture": "Tanggal tidak boleh di masa depan.",
+      "descriptionShort": "Deskripsi minimal 30 karakter.",
+      "descriptionLong": "Deskripsi maksimal 2000 karakter.",
+      "email": "Format email tidak valid.",
+      "spam": "Laporan tidak dapat dikirim.",
+      "server": "Gagal mengirim laporan. Coba lagi beberapa saat."
+    },
+    "sending": "Mengirim…",
+    "submit": "Kirim laporan",
+    "sent": {
+      "title": "Terima kasih!",
+      "body": "Laporanmu sudah kami terima dan akan diverifikasi tim.",
+      "mailto": "Aplikasi email kamu sudah dibuka dengan laporan terisi. Tekan kirim di sana untuk menyelesaikan.",
+      "openMail": "Aplikasi email tidak terbuka? Klik di sini",
+      "again": "Buat laporan lain"
+    }
+  },
+  "about": {
+    "eyebrow": "Tentang SERA",
+    "titleBefore": "Data terbuka untuk",
+    "titleHighlight": "alam",
+    "titleAfter": "Indonesia",
+    "intro": "SERA (Semesta Ruang Alam) adalah proyek open-source yang menyatukan data lingkungan publik agar mudah dipahami dan ditindaklanjuti warga.",
+    "pillarsLabel": "Yang kami lakukan",
+    "pillars": {
+      "monitor": {
+        "title": "Memantau",
+        "body": "Menarik data udara, titik api, dan gempa dari sumber resmi secara otomatis."
+      },
+      "open": {
+        "title": "Membuka",
+        "body": "Setiap angka disertai sumber dan waktu pembaruan. Kode platform terbuka untuk diaudit."
+      },
+      "act": {
+        "title": "Menggerakkan",
+        "body": "Mengubah informasi menjadi langkah konkret: melapor, berpartisipasi, dan bersuara."
+      }
+    },
+    "method": {
+      "eyebrow": "Metodologi",
+      "title": "Bagaimana data kami bekerja",
+      "fetch": {
+        "title": "Ambil",
+        "body": "Data diambil langsung dari API publik BMKG, Open-Meteo, dan NASA FIRMS."
+      },
+      "validate": {
+        "title": "Validasi",
+        "body": "Setiap respons diperiksa skemanya. Data rusak tidak pernah ditampilkan."
+      },
+      "fallback": {
+        "title": "Cadangan",
+        "body": "Bila sumber gagal, kami tampilkan snapshot terakhir dengan label tanggal yang jelas."
+      },
+      "review": {
+        "title": "Tinjau",
+        "body": "Konten krisis ditinjau editor dan mencantumkan tanggal tinjauan terakhir."
+      }
+    },
+    "sources": {
+      "eyebrow": "Sumber",
+      "title": "Lembaga di balik data"
+    },
+    "contact": {
+      "title": "Ingin berkolaborasi?",
+      "body": "Peneliti, jurnalis, komunitas, atau developer: kami terbuka untuk kerja sama dan masukan."
+    }
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "body": "Halaman ini mungkin sudah dipindahkan dalam desain baru kami.",
+    "cta": "Kembali ke beranda"
+  },
+  "wasteBank": {
+    "eyebrow": "Bank Sampah SERA",
+    "titleBefore": "Ubah sampah jadi",
+    "titleHighlight": "tabungan",
+    "intro": "Pilah dari rumah, setor ke unit terdekat, dan lihat sampahmu ditimbang jadi saldo. Program bank sampah SERA menghubungkan warga, pengepul, dan industri daur ulang.",
+    "demo": "Data contoh",
+    "demoHint": "Angka ini contoh untuk tampilan dan akan diganti data program asli.",
+    "stats": {
+      "label": "Capaian program",
+      "kg": "Sampah terkumpul",
+      "savings": "Tabungan nasabah",
+      "members": "Nasabah aktif",
+      "units": "Unit bank sampah"
+    },
+    "stepsEyebrow": "Cara kerja",
+    "stepsTitle": "Lima langkah dari dapur ke tabungan",
+    "steps": {
+      "sort": {
+        "title": "Pilah",
+        "body": "Pisahkan plastik, kertas, logam, dan kaca sejak di rumah."
+      },
+      "clean": {
+        "title": "Bersihkan",
+        "body": "Bilas dan keringkan agar nilai jual tidak turun."
+      },
+      "deposit": {
+        "title": "Setor",
+        "body": "Bawa ke unit bank sampah sesuai jadwal buka."
+      },
+      "weigh": {
+        "title": "Timbang",
+        "body": "Petugas menimbang dan mencatat per jenis sampah."
+      },
+      "save": {
+        "title": "Menabung",
+        "body": "Saldo masuk ke buku tabungan dan bisa dicairkan."
+      }
+    },
+    "groups": {
+      "plastic": "Plastik",
+      "paper": "Kertas",
+      "metal": "Logam",
+      "glass": "Kaca",
+      "other": "Lainnya"
+    },
+    "prices": {
+      "eyebrow": "Daftar harga",
+      "title": "Harga beli per kilogram",
+      "intro": "Harga mengikuti pasar daur ulang dan dapat berbeda di tiap unit."
+    },
+    "units": {
+      "eyebrow": "Unit",
+      "title": "Unit bank sampah SERA",
+      "findMore": "Cari bank sampah lain (SIPSN)",
+      "members_one": "{{formatted}} nasabah",
+      "members_other": "{{formatted}} nasabah"
+    },
+    "start": {
+      "title": "Mau buka bank sampah di lingkunganmu?",
+      "body": "Kami bantu dari pembentukan pengurus, pencatatan, hingga menghubungkan ke pengepul. Panduan mengacu pada Permen LHK No. 14 Tahun 2021.",
+      "cta": "Hubungi tim SERA",
+      "steps": [
+        "Bentuk pengurus bersama RT/RW atau komunitas",
+        "Siapkan tempat penampungan dan timbangan",
+        "Sepakati jenis sampah dan daftar harga dengan pengepul",
+        "Buka pendaftaran nasabah dan buku tabungan",
+        "Catat setoran rutin dan laporkan capaian ke SIPSN"
+      ]
+    }
+  }
+}

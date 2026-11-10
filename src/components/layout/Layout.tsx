@@ -1,21 +1,34 @@
-import React from 'react';
-import Navbar from './Navbar';
-import Footer from './Footer';
+import { Suspense, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { Navbar } from './Navbar';
+import { Footer } from './Footer';
+import { PageFallback } from './PageFallback';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
+export function Layout() {
+  const { pathname, hash } = useLocation();
+  const { t } = useTranslation();
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+  useEffect(() => {
+    if (hash) {
+      document.getElementById(hash.slice(1))?.scrollIntoView();
+      return;
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-900">
+    <div className="flex min-h-dvh flex-col">
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-bg">
+        {t('nav.skip')}
+      </a>
       <Navbar />
-      <main className="flex-1 pt-20">
-        {children}
+      <main id="main" className="flex-1">
+        <Suspense fallback={<PageFallback />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>
   );
-};
-
-export default Layout;
+}

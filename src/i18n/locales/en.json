@@ -1,0 +1,365 @@
+{
+  "nav": {
+    "home": "Home",
+    "crisis": "Crisis & Data",
+    "action": "Act",
+    "about": "About",
+    "report": "Report",
+    "main": "Main navigation",
+    "open": "Open menu",
+    "close": "Close menu",
+    "language": "Language",
+    "darkMode": "Dark mode",
+    "lightMode": "Light mode",
+    "skip": "Skip to content",
+    "wasteBank": "Waste Bank"
+  },
+  "footer": {
+    "tagline": "Semesta Ruang Alam — an open platform to monitor, understand and act for Indonesia's environment.",
+    "explore": "Explore",
+    "sources": "Data sources",
+    "follow": "Follow",
+    "rights": "Open source on GitHub",
+    "disclaimer": "Data comes from third-party sources and may change. In an emergency call 112."
+  },
+  "data": {
+    "live": "Live",
+    "liveShort": "Live",
+    "snapshot": "Backup data",
+    "fallback": "Backup data as of {{date}}",
+    "source": "Source",
+    "unavailable": "Data not available yet"
+  },
+  "aqi": {
+    "good": "Good",
+    "moderate": "Moderate",
+    "sensitive": "Unhealthy for sensitive groups",
+    "unhealthy": "Unhealthy",
+    "veryUnhealthy": "Very unhealthy",
+    "hazardous": "Hazardous"
+  },
+  "severity": {
+    "critical": "Critical",
+    "high": "High",
+    "watch": "Watching"
+  },
+  "region": {
+    "sumatra": "Sumatra",
+    "kalimantan": "Kalimantan",
+    "java": "Java",
+    "sulawesi": "Sulawesi",
+    "nusa-tenggara": "Nusa Tenggara",
+    "maluku": "Maluku",
+    "papua": "Papua"
+  },
+  "home": {
+    "hero": {
+      "before": "Join us in the",
+      "highlight": "fight",
+      "after": "for Indonesia's nature",
+      "intro": "SERA runs community waste banks and opens up environmental data, so everyone can take part.",
+      "ctaPrimary": "See today's data",
+      "ctaSecondary": "Report an incident"
+    },
+    "marquee": [
+      "Sort waste at home",
+      "Waste banks",
+      "Protect Indonesia",
+      "Clean air",
+      "Living forests",
+      "Open data"
+    ],
+    "bento": {
+      "label": "Today's highlights",
+      "imageAlt": "Raja Ampat karst islands seen from above",
+      "share": "Share your report",
+      "quake": "Latest quake",
+      "today": "Today",
+      "daysAway_one": "in {{count}} day",
+      "daysAway_other": "in {{count}} days",
+      "tagWaste": "Waste bank",
+      "tagSave": "Savings",
+      "wasteBank": "Turn your waste into savings"
+    },
+    "mission": {
+      "lead": "Indonesia's environmental data is scattered across many agencies. SERA brings it together in one place, with sources and update times.",
+      "title": "We make environmental crises visible, so more people can act.",
+      "about": "About us",
+      "action": "Ways to act"
+    },
+    "live": {
+      "eyebrow": "Live data",
+      "title": "Indonesia's environment right now",
+      "cta": "Open dashboard",
+      "worstAir": "Worst air quality",
+      "hotspots": "24h fire hotspots",
+      "hotspotsCaption": "VIIRS satellite detections across Indonesia",
+      "quakes": "Recent M5+ quakes",
+      "quakesCaption": "Strongest M {{max}} · BMKG list"
+    },
+    "crises": {
+      "eyebrow": "Key crises",
+      "title": "Issues we are tracking"
+    },
+    "cta": {
+      "title": "Seen environmental damage near you?",
+      "body": "Citizen reports help journalists, researchers and government move faster. It takes under 3 minutes.",
+      "report": "File a report"
+    },
+    "wasteBank": {
+      "eyebrow": "Flagship programme",
+      "title": "Waste banks: your waste has value, your environment stays clean",
+      "body": "Every kilogram sorted and deposited means less waste in landfills and rivers, and extra savings for your family.",
+      "cta": "Discover waste banks",
+      "prices": "See price list"
+    }
+  },
+  "crisis": {
+    "eyebrow": "Crisis & Data",
+    "titleBefore": "Track the environment",
+    "titleHighlight": "live",
+    "intro": "Air quality, fire hotspots and earthquakes from official sources, refreshed automatically. Below, the crises we keep watching.",
+    "data": {
+      "eyebrow": "Dashboard",
+      "title": "Today's numbers",
+      "intro": "Every card shows its source and update time. If a source is unreachable we show the last backup snapshot, clearly labelled."
+    },
+    "air": {
+      "title": "City air quality",
+      "subtitle": "AQI (US EPA scale) and PM2.5, hourly",
+      "trend": "Jakarta daily mean AQI, last 7 days",
+      "trendAria": "Chart of Jakarta daily mean AQI: {{values}}"
+    },
+    "fire": {
+      "title": "Fire hotspots",
+      "subtitle": "Satellite detections, last 24 hours",
+      "unavailable": "Hotspot data is unavailable right now. Check NASA FIRMS or SiPongi directly.",
+      "high_one": "{{count}} high confidence",
+      "high_other": "{{count}} high confidence",
+      "approx": "Regions are approximated from island coordinates."
+    },
+    "quake": {
+      "title": "Earthquakes",
+      "subtitle": "From BMKG",
+      "latest": "Latest"
+    },
+    "list": {
+      "eyebrow": "Crises we follow",
+      "title": "The context behind the numbers",
+      "reviewed": "Reviewed {{date}}"
+    }
+  },
+  "action": {
+    "eyebrow": "Act",
+    "titleBefore": "Small steps, real",
+    "titleHighlight": "impact",
+    "intro": "Pick what suits you best, from filing a report to contributing to this platform.",
+    "waysLabel": "Ways to act",
+    "agenda": {
+      "eyebrow": "Agenda",
+      "title": "Upcoming environmental days",
+      "intro": "Yearly moments to move together with communities in your city."
+    },
+    "community": {
+      "title": "Join the SERA community",
+      "body": "Follow updates, help verify reports, or contribute code and translations. SERA is built in the open."
+    }
+  },
+  "report": {
+    "eyebrow": "Report",
+    "titleBefore": "Report environmental",
+    "titleHighlight": "damage",
+    "intro": "Pollution, illegal logging, land burning or wildlife trafficking. Your report goes to our team for verification.",
+    "tipsLabel": "Reporting tips",
+    "tips": {
+      "location": {
+        "title": "Be specific",
+        "body": "Name the village/district or paste coordinates from a map."
+      },
+      "time": {
+        "title": "When it happened",
+        "body": "Date and time help us match it with satellite data."
+      },
+      "safety": {
+        "title": "Stay safe",
+        "body": "Don't approach dangerous sites. Contact details are optional."
+      }
+    },
+    "emergency": "For an ongoing fire or disaster, call 112 first.",
+    "required": "Fields marked * are required.",
+    "fields": {
+      "title": "Report title",
+      "category": "Category",
+      "date": "Date of incident",
+      "location": "Location",
+      "description": "Description",
+      "email": "Email (optional)"
+    },
+    "placeholders": {
+      "title": "e.g. Liquid waste dumped into the Citarum River",
+      "category": "Choose a category",
+      "location": "Village, district, regency or coordinates",
+      "description": "What did you see? Since when? Who is affected?"
+    },
+    "hints": {
+      "email": "Only used if the team needs to follow up. Never published."
+    },
+    "categories": {
+      "air": "Air pollution",
+      "water": "Water pollution",
+      "waste": "Illegal waste dumping",
+      "deforestation": "Logging/deforestation",
+      "fire": "Land burning",
+      "mining": "Illegal mining",
+      "wildlife": "Wildlife trafficking",
+      "other": "Other"
+    },
+    "errors": {
+      "titleShort": "Title needs at least 8 characters.",
+      "titleLong": "Title can be at most 120 characters.",
+      "category": "Choose a category.",
+      "location": "Location needs at least 3 characters.",
+      "date": "Invalid date.",
+      "dateFuture": "Date cannot be in the future.",
+      "descriptionShort": "Description needs at least 30 characters.",
+      "descriptionLong": "Description can be at most 2000 characters.",
+      "email": "Invalid email format.",
+      "spam": "This report could not be sent.",
+      "server": "Could not send the report. Please try again shortly."
+    },
+    "sending": "Sending…",
+    "submit": "Send report",
+    "sent": {
+      "title": "Thank you!",
+      "body": "We received your report and the team will verify it.",
+      "mailto": "Your email app opened with the report filled in. Press send there to finish.",
+      "openMail": "Email app didn't open? Click here",
+      "again": "File another report"
+    }
+  },
+  "about": {
+    "eyebrow": "About SERA",
+    "titleBefore": "Open data for Indonesia's",
+    "titleHighlight": "nature",
+    "titleAfter": "",
+    "intro": "SERA (Semesta Ruang Alam) is an open-source project that brings public environmental data together so citizens can understand it and act on it.",
+    "pillarsLabel": "What we do",
+    "pillars": {
+      "monitor": {
+        "title": "Monitor",
+        "body": "Automatically pull air, fire and earthquake data from official sources."
+      },
+      "open": {
+        "title": "Open up",
+        "body": "Every number shows its source and update time. The platform code is open for audit."
+      },
+      "act": {
+        "title": "Mobilise",
+        "body": "Turn information into concrete steps: report, take part and speak up."
+      }
+    },
+    "method": {
+      "eyebrow": "Methodology",
+      "title": "How our data works",
+      "fetch": {
+        "title": "Fetch",
+        "body": "Data comes straight from the public APIs of BMKG, Open-Meteo and NASA FIRMS."
+      },
+      "validate": {
+        "title": "Validate",
+        "body": "Every response is schema-checked. Broken data is never displayed."
+      },
+      "fallback": {
+        "title": "Fallback",
+        "body": "If a source fails we show the last snapshot with a clear date label."
+      },
+      "review": {
+        "title": "Review",
+        "body": "Crisis content is reviewed by editors and shows its last review date."
+      }
+    },
+    "sources": {
+      "eyebrow": "Sources",
+      "title": "The institutions behind the data"
+    },
+    "contact": {
+      "title": "Want to collaborate?",
+      "body": "Researchers, journalists, communities or developers: we welcome partnerships and feedback."
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page may have moved in our redesign.",
+    "cta": "Back to home"
+  },
+  "wasteBank": {
+    "eyebrow": "SERA Waste Bank",
+    "titleBefore": "Turn waste into",
+    "titleHighlight": "savings",
+    "intro": "Sort at home, drop off at the nearest unit and watch your waste get weighed into a balance. SERA's waste bank programme links residents, collectors and the recycling industry.",
+    "demo": "Sample data",
+    "demoHint": "These numbers are placeholders for display and will be replaced with real programme data.",
+    "stats": {
+      "label": "Programme results",
+      "kg": "Waste collected",
+      "savings": "Member savings",
+      "members": "Active members",
+      "units": "Waste bank units"
+    },
+    "stepsEyebrow": "How it works",
+    "stepsTitle": "Five steps from kitchen to savings",
+    "steps": {
+      "sort": {
+        "title": "Sort",
+        "body": "Separate plastic, paper, metal and glass at home."
+      },
+      "clean": {
+        "title": "Clean",
+        "body": "Rinse and dry so the resale value stays high."
+      },
+      "deposit": {
+        "title": "Drop off",
+        "body": "Bring it to a waste bank unit during opening hours."
+      },
+      "weigh": {
+        "title": "Weigh",
+        "body": "Staff weigh and record each type of waste."
+      },
+      "save": {
+        "title": "Save",
+        "body": "The balance goes into your savings book and can be withdrawn."
+      }
+    },
+    "groups": {
+      "plastic": "Plastic",
+      "paper": "Paper",
+      "metal": "Metal",
+      "glass": "Glass",
+      "other": "Other"
+    },
+    "prices": {
+      "eyebrow": "Price list",
+      "title": "Buying price per kilogram",
+      "intro": "Prices follow the recycling market and may differ per unit."
+    },
+    "units": {
+      "eyebrow": "Units",
+      "title": "SERA waste bank units",
+      "findMore": "Find other waste banks (SIPSN)",
+      "members_one": "{{formatted}} member",
+      "members_other": "{{formatted}} members"
+    },
+    "start": {
+      "title": "Want to start a waste bank in your neighbourhood?",
+      "body": "We help with setting up a committee, bookkeeping and connecting you to collectors. Guidance follows Ministry of Environment Regulation No. 14/2021.",
+      "cta": "Contact the SERA team",
+      "steps": [
+        "Form a committee with your neighbourhood or community",
+        "Prepare a storage space and a scale",
+        "Agree on accepted waste types and prices with collectors",
+        "Open member registration and savings books",
+        "Record deposits regularly and report results to SIPSN"
+      ]
+    }
+  }
+}
